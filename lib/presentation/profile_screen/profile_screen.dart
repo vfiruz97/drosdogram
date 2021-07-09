@@ -1,13 +1,14 @@
+import 'package:drosdogram/presentation/core/widgets/app_bar_widget.dart';
+import 'package:drosdogram/presentation/core/widgets/outline_button_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/photo_avatar_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/text_underlined_button_widget.dart';
-import 'package:drosdogram/presentation/core/widgets/title_app_bar_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:drosdogram/presentation/core/styles/style.dart';
 import 'package:drosdogram/presentation/core/widgets/yellow_button_widget.dart';
 
-class FinishRegisterScreen extends StatelessWidget {
-  const FinishRegisterScreen({
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({
     Key? key,
   }) : super(key: key);
 
@@ -17,8 +18,9 @@ class FinishRegisterScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const TitleAppBarWidget(
-              title: 'Завершение регистрации',
+            AppBarWidget(
+              title: 'Профиль',
+              onTapBackIcon: () => Navigator.pop(context),
             ),
             const SizedBox(height: 6),
             Padding(
@@ -73,6 +75,12 @@ class FinishRegisterScreen extends StatelessWidget {
                     YellowButtonWidget(
                       label: "Сохранить",
                       isDisable: false,
+                      onTap: () {},
+                      width: double.infinity,
+                    ),
+                    const SizedBox(height: 25),
+                    OutlineButtonWidget(
+                      label: "Выйти",
                       onTap: () {},
                       width: double.infinity,
                     ),

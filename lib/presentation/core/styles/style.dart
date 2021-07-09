@@ -60,6 +60,65 @@ class Style {
     fontSize: 14,
   );
 
+  static const outlinedButtonLabelStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+  );
+
+  static const bottomNoteCardFirstStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    fontSize: 20,
+    color: Colors.black,
+    height: 1.3,
+  );
+
+  static const bottomNoteCardSecondStyle = TextStyle(
+    height: 1.3,
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+    color: Color.fromRGBO(0, 0, 0, 0.8),
+  );
+
+  static const objectCardStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w700,
+    fontStyle: FontStyle.normal,
+    fontSize: 18,
+    color: Colors.white,
+  );
+
+  static const carouselItemFirstStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    fontSize: 26,
+    color: Colors.white,
+  );
+
+  static const carouselItemSecondStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+    color: Colors.white,
+    letterSpacing: 1.1,
+    height: 1.3,
+  );
+
+  static const greenButtonStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+    color: Colors.white,
+  );
+
   static TextStyle underlinedButtonStyle({Color? color}) => TextStyle(
         color: color,
         fontFamily: "CeraRoundPro",
@@ -135,4 +194,22 @@ class Style {
       ),
     ],
   );
+
+  static BoxDecoration outlineButtonDecoration({required Color color}) =>
+      BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: color,
+        ),
+      );
+
+  static BoxDecoration objectCardDecoration({required String backImage}) =>
+      BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(width: 0.1),
+        image: DecorationImage(
+          image: NetworkImage(backImage),
+          fit: BoxFit.fill,
+        ),
+      );
 }
