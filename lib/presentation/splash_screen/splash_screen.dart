@@ -1,6 +1,8 @@
-import 'package:drosdogram/presentation/core/styles/style.dart';
+import 'package:drosdogram/presentation/core/widgets/yellow_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'package:drosdogram/presentation/core/styles/style.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({
@@ -35,16 +37,11 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              InkWell(
+              YellowButtonWidget(
+                label: "Начать",
+                isDisable: false,
+                width: double.infinity,
                 onTap: () {},
-                child: Container(
-                  height: 40,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: Style.splashScreenFirstDecoration,
-                  child:
-                      const Text("Начать", style: Style.splashScreenThirdStyle),
-                ),
               ),
             ],
           ),
