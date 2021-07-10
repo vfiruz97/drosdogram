@@ -119,6 +119,40 @@ class Style {
     color: Colors.white,
   );
 
+  static const titleWidgetStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontSize: 26,
+    color: Colors.black,
+    letterSpacing: 1,
+  );
+
+  static const addressWidgetStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+    color: Color.fromRGBO(0, 0, 0, 0.5),
+    letterSpacing: 1,
+  );
+
+  static const statusInfoCardFirstStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+    color: Colors.black,
+  );
+
+  static const statusInfoCardSecondStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+    color: Colors.black,
+  );
+
   static TextStyle underlinedButtonStyle({Color? color}) => TextStyle(
         color: color,
         fontFamily: "CeraRoundPro",
@@ -161,6 +195,7 @@ class Style {
       );
 
   static const appBarBorderDecoration = BoxDecoration(
+    color: Colors.white,
     border: Border(
       bottom: BorderSide(
         width: 0.2,
@@ -212,4 +247,9 @@ class Style {
           fit: BoxFit.fill,
         ),
       );
+
+  static final statusInfoCardDecorationd = BoxDecoration(
+    color: const Color.fromRGBO(242, 242, 242, 1),
+    borderRadius: BorderRadius.circular(100),
+  );
 }
