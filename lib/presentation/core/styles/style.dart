@@ -137,6 +137,13 @@ class Style {
     letterSpacing: 1,
   );
 
+  static const cancelButtonStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+  );
+
   static const statusInfoCardFirstStyle = TextStyle(
     fontFamily: "CeraRoundPro",
     fontWeight: FontWeight.bold,
@@ -251,5 +258,15 @@ class Style {
   static final statusInfoCardDecorationd = BoxDecoration(
     color: const Color.fromRGBO(242, 242, 242, 1),
     borderRadius: BorderRadius.circular(100),
+  );
+
+  static final dialogFirstDecorationd = BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(8),
+  );
+
+  static final cancelButtonDecorationd = BoxDecoration(
+    color: const Color.fromRGBO(0, 0, 0, 0.05),
+    borderRadius: BorderRadius.circular(8),
   );
 }

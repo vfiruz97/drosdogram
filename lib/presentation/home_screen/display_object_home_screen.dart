@@ -1,5 +1,6 @@
+import 'package:drosdogram/presentation/core/dialog_templates/ipoteka_create_form_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/first_title_widget.dart';
-import 'package:drosdogram/presentation/home_screen/widgets/address_widget.dart';
+import 'package:drosdogram/presentation/core/widgets/address_widget.dart';
 import 'package:drosdogram/presentation/home_screen/widgets/double_photo_card_widget.dart';
 import 'package:drosdogram/presentation/home_screen/widgets/single_photo_card_widget.dart';
 import 'package:drosdogram/presentation/home_screen/widgets/status_info_card_widget.dart';
@@ -11,7 +12,7 @@ import 'package:drosdogram/presentation/core/widgets/note_bottom_card_widget.dar
 import 'package:drosdogram/presentation/core/widgets/outline_button_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/yellow_button_widget.dart';
 
-class DisplayObjectHomeScreen extends StatelessWidget {
+class  DisplayObjectHomeScreen extends StatelessWidget {
   const DisplayObjectHomeScreen({
     Key? key,
   }) : super(key: key);
@@ -76,7 +77,7 @@ class DisplayObjectHomeScreen extends StatelessWidget {
                       const SizedBox(height: 15),
                       OutlineButtonWidget(
                         label: 'Подать заявку на ипотеку',
-                        onTap: () {},
+                        onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(context),
                         width: double.infinity,
                         color: const Color.fromRGBO(33, 160, 56, 1),
                       ),

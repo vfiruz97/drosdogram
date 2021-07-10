@@ -1,3 +1,4 @@
+import 'package:drosdogram/presentation/core/dialog_templates/agency_create_form_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/app_bar_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/outline_button_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/photo_avatar_widget.dart';
@@ -53,7 +54,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         TextUnderlinedButtonWidget(
                           label: 'Зарегистрировать агенство',
-                          onTap: () {},
+                          onTap: () =>
+                              AgencyCreateFormWidget.showAgencyDialog(context),
                           color: Colors.black,
                         ),
                       ],

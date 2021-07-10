@@ -1,3 +1,4 @@
+import 'package:drosdogram/presentation/core/dialog_templates/ipoteka_create_form_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/green_button_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class FirstTypeCarouselItemWidget extends StatelessWidget {
           ),
           GreenButtonWidget(
             label: "Подать заявку на ипотеку",
-            onTap: () => Navigator.pop(context),
+            onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(context),
           ),
         ],
       ),
