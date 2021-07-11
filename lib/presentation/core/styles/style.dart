@@ -125,7 +125,14 @@ class Style {
     fontStyle: FontStyle.normal,
     fontSize: 26,
     color: Colors.black,
-    letterSpacing: 1,
+    letterSpacing: 1.2,
+  );
+
+  static const uploadWidgetStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
   );
 
   static const addressWidgetStyle = TextStyle(
