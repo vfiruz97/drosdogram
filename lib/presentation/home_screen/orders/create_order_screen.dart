@@ -63,7 +63,11 @@ class CreateOrderFormScreen extends StatelessWidget {
                       const SizedBox(height: 30),
                       Row(
                         children: [
-                          const Expanded(child: CancelButtonWidget()),
+                          Expanded(
+                            child: CancelButtonWidget(
+                              onTap: () => Navigator.pop(context),
+                            ),
+                          ),
                           const SizedBox(width: 15),
                           Expanded(
                             child: YellowButtonWidget(

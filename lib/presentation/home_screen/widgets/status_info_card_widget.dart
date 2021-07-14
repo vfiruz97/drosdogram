@@ -22,7 +22,7 @@ class StatusInfoCardWidget extends StatelessWidget {
               horizontal: 12,
               vertical: 4,
             ),
-            decoration: Style.statusInfoCardDecorationd,
+            decoration: Style.statusInfoCardDecoration,
             child: Text(status, style: Style.statusInfoCardFirstStyle),
           ),
           const SizedBox(width: 10),

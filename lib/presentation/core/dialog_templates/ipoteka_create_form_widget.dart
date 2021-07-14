@@ -36,7 +36,7 @@ class IpotekaCreateFormWidget extends StatelessWidget {
                   horizontal: 20,
                   vertical: 25,
                 ),
-                decoration: Style.dialogFirstDecorationd,
+                decoration: Style.dialogFirstDecoration,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -65,7 +65,11 @@ class IpotekaCreateFormWidget extends StatelessWidget {
                     const SizedBox(height: 25),
                     Row(
                       children: [
-                        const Expanded(child: CancelButtonWidget()),
+                        Expanded(
+                          child: CancelButtonWidget(
+                            onTap: () => Navigator.pop(context),
+                          ),
+                        ),
                         const SizedBox(width: 15),
                         Expanded(
                           child: YellowButtonWidget(

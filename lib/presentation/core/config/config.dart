@@ -17,4 +17,10 @@ class Config {
     final padding = MediaQuery.of(context).padding;
     return height - padding.top - padding.bottom;
   }
+
+  static double getBubbleMaxWidth(BuildContext context) {
+    final double width = getScreenWidth(context);
+    final double maxBubbleWidth = width * 0.6; // 60% of screen width
+    return maxBubbleWidth > 100 ? maxBubbleWidth : 200;
+  }
 }

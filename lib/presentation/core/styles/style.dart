@@ -93,6 +93,35 @@ class Style {
     color: Colors.white,
   );
 
+  static const objectInfoCardFirstStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 12,
+  );
+
+  static const objectInfoCardSecondStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+  );
+
+  static const objectInfoCardThirdStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    fontSize: 9,
+  );
+
+  static const objectInfoCardForthStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 12,
+    height: 1.2,
+  );
+
   static const carouselItemFirstStyle = TextStyle(
     fontFamily: "CeraRoundPro",
     fontWeight: FontWeight.w600,
@@ -151,6 +180,13 @@ class Style {
     fontSize: 14,
   );
 
+  static const selectboxWidgetStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+  );
+
   static const statusInfoCardFirstStyle = TextStyle(
     fontFamily: "CeraRoundPro",
     fontWeight: FontWeight.bold,
@@ -193,7 +229,8 @@ class Style {
   }) =>
       InputDecoration(
         hintText: hintText,
-        contentPadding: const EdgeInsets.only(left: 16, top: 13, bottom: 13),
+        contentPadding:
+            const EdgeInsets.only(left: 16, top: 13, bottom: 13, right: 8),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
           borderSide: BorderSide(
@@ -207,6 +244,22 @@ class Style {
           ),
         ),
       );
+
+  static const chatTextareaDecoratdion = InputDecoration(
+    contentPadding: EdgeInsets.only(left: 16, top: 13, bottom: 13, right: 56),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderSide: BorderSide(
+        color: Color.fromRGBO(0, 0, 0, 0.25),
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderSide: BorderSide(
+        color: Color.fromRGBO(0, 0, 0, 0.25),
+      ),
+    ),
+  );
 
   static const appBarBorderDecoration = BoxDecoration(
     color: Colors.white,
@@ -262,18 +315,47 @@ class Style {
         ),
       );
 
-  static final statusInfoCardDecorationd = BoxDecoration(
+  static final statusInfoCardDecoration = BoxDecoration(
     color: const Color.fromRGBO(242, 242, 242, 1),
     borderRadius: BorderRadius.circular(100),
   );
 
-  static final dialogFirstDecorationd = BoxDecoration(
+  static final dialogFirstDecoration = BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(8),
   );
 
-  static final cancelButtonDecorationd = BoxDecoration(
+  static final cancelButtonDecoration = BoxDecoration(
     color: const Color.fromRGBO(0, 0, 0, 0.05),
     borderRadius: BorderRadius.circular(8),
+  );
+
+  static const selectboxDecoration = InputDecoration(
+    border: OutlineInputBorder(
+      gapPadding: 1,
+      borderRadius: BorderRadius.all(
+        Radius.circular(8),
+      ),
+    ),
+  );
+
+  static const yellowCircleDecoration = BoxDecoration(
+    shape: BoxShape.circle,
+    color: Colors.yellow,
+  );
+
+  static final objectInfoCardDecoration = BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(8),
+    border: Border.all(
+      color: const Color.fromRGBO(0, 0, 0, 0.05),
+    ),
+    boxShadow: const [
+      BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.05),
+        offset: Offset(0, 3),
+        blurRadius: 5,
+      ),
+    ],
   );
 }

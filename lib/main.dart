@@ -5,6 +5,8 @@ import 'package:drosdogram/presentation/core/dialog_templates/dispaly_dialog_tem
 import 'package:drosdogram/presentation/home_screen/display_object_home_screen.dart';
 import 'package:drosdogram/presentation/home_screen/home_screen.dart';
 import 'package:drosdogram/presentation/home_screen/orders/create_order_screen.dart';
+import 'package:drosdogram/presentation/order_screens/order_chat/order_chat_screen.dart';
+import 'package:drosdogram/presentation/order_screens/order_list/order_list_screen.dart';
 import 'package:drosdogram/presentation/profile_screen/profile_screen.dart';
 import 'package:drosdogram/presentation/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +36,9 @@ class MyApp extends StatelessWidget {
       //home: const HomeScreen(),
       //home: const DisplayObjectHomeScreen(),
       //home: const DisplayDialogTemplates(),
-      home: const CreateOrderFormScreen(),
+      //home: const CreateOrderFormScreen(),
+      //home: const OrderListScreen(),
+      home: const OrderChatScreen(),
       //home: const DisplayScreens(),
     );
   }
@@ -131,6 +135,24 @@ class DisplayScreens extends StatelessWidget {
               ),
             ),
             child: const Text('CreateOrderFormScreen'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const OrderListScreen(),
+              ),
+            ),
+            child: const Text('OrderListScreen'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const OrderChatScreen(),
+              ),
+            ),
+            child: const Text('OrderChatScreen'),
           ),
         ],
       ),
