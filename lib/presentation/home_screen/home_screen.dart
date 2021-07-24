@@ -15,30 +15,26 @@ class HomeScreen extends StatelessWidget {
     const String itemImage =
         "https://cdn.mskguru.ru/uploads/flats/3836/kvartry-v-zhk-dom-u-reki-1446624279,9474.jpg";
 
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            CarouselWidget(),
-            const SizedBox(height: 16),
-            Expanded(
-              child: ListView.builder(
-                itemCount: itemCount + 1,
-                itemBuilder: (context, index) {
-                  if (index == itemCount) {
-                    return const NoteBottomCardWidget();
-                  }
-                  return ObectCardWidget(
-                    backImage: itemImage,
-                    label: "Дом отдыха «Ноунейм»",
-                    onTap: () => Navigator.pop(context),
-                  );
-                },
-              ),
-            ),
-          ],
+    return Column(
+      children: [
+        CarouselWidget(),
+        const SizedBox(height: 16),
+        Expanded(
+          child: ListView.builder(
+            itemCount: itemCount + 1,
+            itemBuilder: (context, index) {
+              if (index == itemCount) {
+                return const NoteBottomCardWidget();
+              }
+              return ObectCardWidget(
+                backImage: itemImage,
+                label: "Дом отдыха «Ноунейм»",
+                onTap: () => Navigator.pop(context),
+              );
+            },
+          ),
         ),
-      ),
+      ],
     );
   }
 }

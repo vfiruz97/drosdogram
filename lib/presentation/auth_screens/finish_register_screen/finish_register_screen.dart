@@ -1,5 +1,4 @@
 import 'package:drosdogram/presentation/core/dialog_templates/agency_create_form_widget.dart';
-import 'package:drosdogram/presentation/core/widgets/photo_avatar_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/text_underlined_button_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/title_app_bar_widget.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,9 @@ class FinishRegisterScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const PhotoAvatarWidget(),
+                    // PhotoAvatarWidget(
+                    //   imageSrc: '',
+                    // ),
                     const SizedBox(height: 35),
                     TextFormField(
                       style: Style.textFieldFirstStyle,
@@ -52,7 +53,8 @@ class FinishRegisterScreen extends StatelessWidget {
                         ),
                         TextUnderlinedButtonWidget(
                           label: 'Зарегистрировать агенство',
-                          onTap: () => AgencyCreateFormWidget.showAgencyDialog(context),
+                          onTap: () =>
+                              AgencyCreateFormWidget.showAgencyDialog(context),
                           color: Colors.black,
                         ),
                       ],

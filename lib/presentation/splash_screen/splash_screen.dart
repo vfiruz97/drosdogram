@@ -41,7 +41,8 @@ class SplashScreen extends StatelessWidget {
                 label: "Начать",
                 isDisable: false,
                 width: double.infinity,
-                onTap: () {},
+                onTap: () =>
+                    Navigator.pushReplacementNamed(context, '/register-first'),
               ),
             ],
           ),

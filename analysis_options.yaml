@@ -11,3 +11,4 @@ analyzer:
     sort_unnamed_constructors_first: ignore
     non_constant_identifier_names: ignore
     sort_pub_dependencies: ignore
+    import_of_legacy_library_into_null_safe: ignore
