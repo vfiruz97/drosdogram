@@ -5,5 +5,6 @@ class BottomNavEvent with _$BottomNavEvent {
   const factory BottomNavEvent.changeTo({
     required NavScreen scr,
     NavScreen? prevScr,
+    @Default(null) dynamic data,
   }) = _ChangeTo;
 }

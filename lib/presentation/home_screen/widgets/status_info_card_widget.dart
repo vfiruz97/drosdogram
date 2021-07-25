@@ -26,7 +26,7 @@ class StatusInfoCardWidget extends StatelessWidget {
             child: Text(status, style: Style.statusInfoCardFirstStyle),
           ),
           const SizedBox(width: 10),
-          Text(value, style: Style.statusInfoCardSecondStyle),
+          Expanded(child: Text(value, style: Style.statusInfoCardSecondStyle)),
         ],
       ),
     );

@@ -20,6 +20,7 @@ class BottomNavBloc extends Bloc<BottomNavEvent, BottomNavState> {
         yield state.copyWith(
           preScr: e.prevScr ?? state.curScr,
           curScr: e.scr,
+          data: e.data,
         );
       },
     );

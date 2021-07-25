@@ -16,10 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$BottomNavEventTearOff {
   const _$BottomNavEventTearOff();
 
-  _ChangeTo changeTo({required NavScreen scr, NavScreen? prevScr}) {
+  _ChangeTo changeTo(
+      {required NavScreen scr, NavScreen? prevScr, dynamic data = null}) {
     return _ChangeTo(
       scr: scr,
       prevScr: prevScr,
+      data: data,
     );
   }
 }
@@ -31,15 +33,17 @@ const $BottomNavEvent = _$BottomNavEventTearOff();
 mixin _$BottomNavEvent {
   NavScreen get scr => throw _privateConstructorUsedError;
   NavScreen? get prevScr => throw _privateConstructorUsedError;
+  dynamic get data => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(NavScreen scr, NavScreen? prevScr) changeTo,
+    required TResult Function(NavScreen scr, NavScreen? prevScr, dynamic data)
+        changeTo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(NavScreen scr, NavScreen? prevScr)? changeTo,
+    TResult Function(NavScreen scr, NavScreen? prevScr, dynamic data)? changeTo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -65,7 +69,7 @@ abstract class $BottomNavEventCopyWith<$Res> {
   factory $BottomNavEventCopyWith(
           BottomNavEvent value, $Res Function(BottomNavEvent) then) =
       _$BottomNavEventCopyWithImpl<$Res>;
-  $Res call({NavScreen scr, NavScreen? prevScr});
+  $Res call({NavScreen scr, NavScreen? prevScr, dynamic data});
 }
 
 /// @nodoc
@@ -81,6 +85,7 @@ class _$BottomNavEventCopyWithImpl<$Res>
   $Res call({
     Object? scr = freezed,
     Object? prevScr = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       scr: scr == freezed
@@ -91,6 +96,10 @@ class _$BottomNavEventCopyWithImpl<$Res>
           ? _value.prevScr
           : prevScr // ignore: cast_nullable_to_non_nullable
               as NavScreen?,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -101,7 +110,7 @@ abstract class _$ChangeToCopyWith<$Res>
   factory _$ChangeToCopyWith(_ChangeTo value, $Res Function(_ChangeTo) then) =
       __$ChangeToCopyWithImpl<$Res>;
   @override
-  $Res call({NavScreen scr, NavScreen? prevScr});
+  $Res call({NavScreen scr, NavScreen? prevScr, dynamic data});
 }
 
 /// @nodoc
@@ -117,6 +126,7 @@ class __$ChangeToCopyWithImpl<$Res> extends _$BottomNavEventCopyWithImpl<$Res>
   $Res call({
     Object? scr = freezed,
     Object? prevScr = freezed,
+    Object? data = freezed,
   }) {
     return _then(_ChangeTo(
       scr: scr == freezed
@@ -127,6 +137,10 @@ class __$ChangeToCopyWithImpl<$Res> extends _$BottomNavEventCopyWithImpl<$Res>
           ? _value.prevScr
           : prevScr // ignore: cast_nullable_to_non_nullable
               as NavScreen?,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -134,16 +148,19 @@ class __$ChangeToCopyWithImpl<$Res> extends _$BottomNavEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ChangeTo implements _ChangeTo {
-  const _$_ChangeTo({required this.scr, this.prevScr});
+  const _$_ChangeTo({required this.scr, this.prevScr, this.data = null});
 
   @override
   final NavScreen scr;
   @override
   final NavScreen? prevScr;
+  @JsonKey(defaultValue: null)
+  @override
+  final dynamic data;
 
   @override
   String toString() {
-    return 'BottomNavEvent.changeTo(scr: $scr, prevScr: $prevScr)';
+    return 'BottomNavEvent.changeTo(scr: $scr, prevScr: $prevScr, data: $data)';
   }
 
   @override
@@ -153,14 +170,18 @@ class _$_ChangeTo implements _ChangeTo {
             (identical(other.scr, scr) ||
                 const DeepCollectionEquality().equals(other.scr, scr)) &&
             (identical(other.prevScr, prevScr) ||
-                const DeepCollectionEquality().equals(other.prevScr, prevScr)));
+                const DeepCollectionEquality()
+                    .equals(other.prevScr, prevScr)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(scr) ^
-      const DeepCollectionEquality().hash(prevScr);
+      const DeepCollectionEquality().hash(prevScr) ^
+      const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
@@ -170,19 +191,20 @@ class _$_ChangeTo implements _ChangeTo {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(NavScreen scr, NavScreen? prevScr) changeTo,
+    required TResult Function(NavScreen scr, NavScreen? prevScr, dynamic data)
+        changeTo,
   }) {
-    return changeTo(scr, prevScr);
+    return changeTo(scr, prevScr, data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(NavScreen scr, NavScreen? prevScr)? changeTo,
+    TResult Function(NavScreen scr, NavScreen? prevScr, dynamic data)? changeTo,
     required TResult orElse(),
   }) {
     if (changeTo != null) {
-      return changeTo(scr, prevScr);
+      return changeTo(scr, prevScr, data);
     }
     return orElse();
   }
@@ -209,13 +231,15 @@ class _$_ChangeTo implements _ChangeTo {
 }
 
 abstract class _ChangeTo implements BottomNavEvent {
-  const factory _ChangeTo({required NavScreen scr, NavScreen? prevScr}) =
-      _$_ChangeTo;
+  const factory _ChangeTo(
+      {required NavScreen scr, NavScreen? prevScr, dynamic data}) = _$_ChangeTo;
 
   @override
   NavScreen get scr => throw _privateConstructorUsedError;
   @override
   NavScreen? get prevScr => throw _privateConstructorUsedError;
+  @override
+  dynamic get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ChangeToCopyWith<_ChangeTo> get copyWith =>
@@ -226,10 +250,12 @@ abstract class _ChangeTo implements BottomNavEvent {
 class _$BottomNavStateTearOff {
   const _$BottomNavStateTearOff();
 
-  _BottomNavState call({required NavScreen curScr, NavScreen? preScr}) {
+  _BottomNavState call(
+      {required NavScreen curScr, NavScreen? preScr, dynamic data = null}) {
     return _BottomNavState(
       curScr: curScr,
       preScr: preScr,
+      data: data,
     );
   }
 }
@@ -241,6 +267,7 @@ const $BottomNavState = _$BottomNavStateTearOff();
 mixin _$BottomNavState {
   NavScreen get curScr => throw _privateConstructorUsedError;
   NavScreen? get preScr => throw _privateConstructorUsedError;
+  dynamic get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BottomNavStateCopyWith<BottomNavState> get copyWith =>
@@ -252,7 +279,7 @@ abstract class $BottomNavStateCopyWith<$Res> {
   factory $BottomNavStateCopyWith(
           BottomNavState value, $Res Function(BottomNavState) then) =
       _$BottomNavStateCopyWithImpl<$Res>;
-  $Res call({NavScreen curScr, NavScreen? preScr});
+  $Res call({NavScreen curScr, NavScreen? preScr, dynamic data});
 }
 
 /// @nodoc
@@ -268,6 +295,7 @@ class _$BottomNavStateCopyWithImpl<$Res>
   $Res call({
     Object? curScr = freezed,
     Object? preScr = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       curScr: curScr == freezed
@@ -278,6 +306,10 @@ class _$BottomNavStateCopyWithImpl<$Res>
           ? _value.preScr
           : preScr // ignore: cast_nullable_to_non_nullable
               as NavScreen?,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -289,7 +321,7 @@ abstract class _$BottomNavStateCopyWith<$Res>
           _BottomNavState value, $Res Function(_BottomNavState) then) =
       __$BottomNavStateCopyWithImpl<$Res>;
   @override
-  $Res call({NavScreen curScr, NavScreen? preScr});
+  $Res call({NavScreen curScr, NavScreen? preScr, dynamic data});
 }
 
 /// @nodoc
@@ -307,6 +339,7 @@ class __$BottomNavStateCopyWithImpl<$Res>
   $Res call({
     Object? curScr = freezed,
     Object? preScr = freezed,
+    Object? data = freezed,
   }) {
     return _then(_BottomNavState(
       curScr: curScr == freezed
@@ -317,6 +350,10 @@ class __$BottomNavStateCopyWithImpl<$Res>
           ? _value.preScr
           : preScr // ignore: cast_nullable_to_non_nullable
               as NavScreen?,
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -324,16 +361,20 @@ class __$BottomNavStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_BottomNavState implements _BottomNavState {
-  const _$_BottomNavState({required this.curScr, this.preScr});
+  const _$_BottomNavState(
+      {required this.curScr, this.preScr, this.data = null});
 
   @override
   final NavScreen curScr;
   @override
   final NavScreen? preScr;
+  @JsonKey(defaultValue: null)
+  @override
+  final dynamic data;
 
   @override
   String toString() {
-    return 'BottomNavState(curScr: $curScr, preScr: $preScr)';
+    return 'BottomNavState(curScr: $curScr, preScr: $preScr, data: $data)';
   }
 
   @override
@@ -343,14 +384,17 @@ class _$_BottomNavState implements _BottomNavState {
             (identical(other.curScr, curScr) ||
                 const DeepCollectionEquality().equals(other.curScr, curScr)) &&
             (identical(other.preScr, preScr) ||
-                const DeepCollectionEquality().equals(other.preScr, preScr)));
+                const DeepCollectionEquality().equals(other.preScr, preScr)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(curScr) ^
-      const DeepCollectionEquality().hash(preScr);
+      const DeepCollectionEquality().hash(preScr) ^
+      const DeepCollectionEquality().hash(data);
 
   @JsonKey(ignore: true)
   @override
@@ -360,12 +404,16 @@ class _$_BottomNavState implements _BottomNavState {
 
 abstract class _BottomNavState implements BottomNavState {
   const factory _BottomNavState(
-      {required NavScreen curScr, NavScreen? preScr}) = _$_BottomNavState;
+      {required NavScreen curScr,
+      NavScreen? preScr,
+      dynamic data}) = _$_BottomNavState;
 
   @override
   NavScreen get curScr => throw _privateConstructorUsedError;
   @override
   NavScreen? get preScr => throw _privateConstructorUsedError;
+  @override
+  dynamic get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BottomNavStateCopyWith<_BottomNavState> get copyWith =>

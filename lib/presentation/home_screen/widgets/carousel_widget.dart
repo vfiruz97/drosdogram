@@ -1,29 +1,38 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:drosdogram/presentation/home_screen/widgets/first_type_carousel_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-final List<List<String>> imgList = [
-  [
-    'В Сочи новый ЖК',
-    'На севере города к 2022 году планируется старт строительства нового премиального жилого комплекса',
-    'https://cdn.mskguru.ru/uploads/flats/3836/kvartry-v-zhk-dom-u-reki-1446624276,4152.jpg'
-  ],
-  [
-    'Мы поработим мир',
-    'На севере города к 2022 году планируется старт строительства нового премиального жилого комплекса',
-    'https://cdn.mskguru.ru/uploads/flats/3836/kvartry-v-zhk-dom-u-reki-1446624276,4152.jpg'
-  ],
-];
+import 'package:drosdogram/aplication/objects/slider/slider_bloc.dart';
+import 'package:drosdogram/presentation/home_screen/widgets/first_type_carousel_item_widget.dart';
 
-final List<Widget> imageSliders =
-    imgList.map((item) => FirstTypeCarouselItemWidget(item: item)).toList();
+class CarouselWidget extends StatelessWidget {
+  const CarouselWidget({Key? key}) : super(key: key);
 
-class CarouselWidget extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CarouselWithIndicatorState();
+  Widget build(BuildContext context) {
+    return BlocBuilder<SliderBloc, SliderState>(
+      builder: (context, state) {
+        final _sliders = state.sliders;
+        final _sliderWidgets = _sliders
+            .map((s) => FirstTypeCarouselItemWidget(slider: s))
+            .toList();
+        return SliderWidget(sliders: _sliderWidgets);
+      },
+    );
+  }
 }
 
-class _CarouselWithIndicatorState extends State<CarouselWidget> {
+class SliderWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _CarouselWithIndicatorState();
+  final List<Widget> sliders;
+  const SliderWidget({
+    Key? key,
+    required this.sliders,
+  }) : super(key: key);
+}
+
+class _CarouselWithIndicatorState extends State<SliderWidget> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
@@ -35,7 +44,7 @@ class _CarouselWithIndicatorState extends State<CarouselWidget> {
         alignment: Alignment.center,
         children: [
           CarouselSlider(
-            items: imageSliders,
+            items: widget.sliders,
             carouselController: _controller,
             options: CarouselOptions(
                 height: 350,
@@ -52,7 +61,7 @@ class _CarouselWithIndicatorState extends State<CarouselWidget> {
             bottom: 20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: imgList.asMap().entries.map((entry) {
+              children: widget.sliders.asMap().entries.map((entry) {
                 return GestureDetector(
                   onTap: () => _controller.animateToPage(entry.key),
                   child: Container(

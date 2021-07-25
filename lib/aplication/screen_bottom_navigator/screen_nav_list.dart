@@ -15,6 +15,10 @@ class HomeScr extends NavScreen {
   const HomeScr() : super(index: 0, name: 'HomeScr');
 }
 
+class HomeDisplayObjectScr extends NavScreen {
+  const HomeDisplayObjectScr() : super(index: 0, name: 'HomeDisplayObjectScr');
+}
+
 class RequestScr extends NavScreen {
   const RequestScr() : super(index: 1, name: 'RequestScr');
 }

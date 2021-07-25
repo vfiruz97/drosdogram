@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:drosdogram/domain/core/errors.dart';
 import 'package:drosdogram/injection.dart';
@@ -11,6 +13,8 @@ const String userShowUrl = 'user/show';
 const String userEditUrl = 'user/edit';
 const String agencyUrl = 'agency';
 const String createAgencyUrl = 'agency/add';
+const String objectUrl = 'object';
+const String sliderUrl = 'slider';
 
 @lazySingleton
 class HttpClient {
@@ -50,6 +54,23 @@ class HttpClient {
       return _response;
     } catch (e) {
       throw NetworkError();
+    }
+  }
+
+  Future<void> test() async {
+    try {
+      dio.options.headers['Authorization'] = _authToken;
+      final Response _response = await dio.get('object');
+      print(_response);
+      final _body = jsonDecode(_response.toString());
+      print(_body);
+      if (_response.statusCode == 200) {
+        //
+      } else {
+        print('errprr');
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

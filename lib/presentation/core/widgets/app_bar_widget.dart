@@ -27,7 +27,13 @@ class AppBarWidget extends StatelessWidget {
             onTap: () => onTapBackIcon(),
             child: SvgPicture.asset("assets/images/arrow-left-black.svg"),
           ),
-          Text(title, style: Style.appBarTitleStyle),
+          Expanded(
+            child: Center(
+              child: Text(title,
+                  overflow: TextOverflow.ellipsis,
+                  style: Style.appBarTitleStyle),
+            ),
+          ),
           rightWidget,
         ],
       ),

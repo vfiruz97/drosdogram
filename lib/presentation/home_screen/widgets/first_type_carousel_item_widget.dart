@@ -1,3 +1,4 @@
+import 'package:drosdogram/domain/objects/main_objects/slider.dart' as s;
 import 'package:drosdogram/presentation/core/dialog_templates/ipoteka_create_form_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/green_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:drosdogram/presentation/core/styles/style.dart';
 
 class FirstTypeCarouselItemWidget extends StatelessWidget {
-  final List<String> item;
+  final s.Slider slider;
   const FirstTypeCarouselItemWidget({
     Key? key,
-    required this.item,
+    required this.slider,
   }) : super(key: key);
 
   @override
@@ -17,7 +18,7 @@ class FirstTypeCarouselItemWidget extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(item[2]),
+          image: NetworkImage(slider.image),
           fit: BoxFit.fill,
         ),
       ),
@@ -26,17 +27,18 @@ class FirstTypeCarouselItemWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Text(item[0], style: Style.carouselItemFirstStyle),
+            child: Text(slider.name, style: Style.carouselItemFirstStyle),
           ),
           Text(
-            item[1],
+            slider.content,
             textAlign: TextAlign.center,
             style: Style.carouselItemSecondStyle,
           ),
-          GreenButtonWidget(
-            label: "Подать заявку на ипотеку",
-            onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(context),
-          ),
+          if (slider.isPop == "1")
+            GreenButtonWidget(
+              label: slider.linkText,
+              onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(context),
+            ),
         ],
       ),
     );

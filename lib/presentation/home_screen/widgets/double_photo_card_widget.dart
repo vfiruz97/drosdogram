@@ -3,41 +3,57 @@ import 'package:flutter/material.dart';
 class DoublePhotoCardWidget extends StatelessWidget {
   const DoublePhotoCardWidget({
     Key? key,
-    required this.firstImageUrl,
-    required this.secondImageUrl,
+    required this.images,
   }) : super(key: key);
 
-  final String firstImageUrl;
-  final String secondImageUrl;
+  final List<String> images;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 6,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              firstImageUrl,
-              height: 140.0,
-              fit: BoxFit.fill,
+    final imageCount = images.length;
+    final List<Widget> _sliders = [];
+    int index = 0;
+
+    for (var i = 0; i < imageCount / 2; i++) {
+      _sliders.add(
+        Row(
+          children: [
+            if (index < imageCount)
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 7, right: 3.5),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      images[index],
+                      height: 140.0,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+              ),
+            Expanded(
+              child: ((index + 1) < imageCount)
+                  ? Container(
+                      margin: const EdgeInsets.only(bottom: 7, left: 3.5),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          images[index + 1],
+                          height: 140.0,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
             ),
-          ),
+          ],
         ),
-        const SizedBox(width: 7),
-        Expanded(
-          flex: 4,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              secondImageUrl,
-              height: 140.0,
-              fit: BoxFit.fill,
-            ),
-          ),
-        ),
-      ],
+      );
+      index += 2;
+    }
+    return Column(
+      children: _sliders,
     );
   }
 }

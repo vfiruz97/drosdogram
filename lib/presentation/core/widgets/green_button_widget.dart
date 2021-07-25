@@ -1,6 +1,5 @@
 import 'package:drosdogram/presentation/core/styles/style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class GreenButtonWidget extends StatelessWidget {
   final String label;
@@ -30,10 +29,10 @@ class GreenButtonWidget extends StatelessWidget {
               child: Text(label, style: Style.greenButtonStyle),
             ),
           ),
-          Positioned(
-            right: 20,
-            child: SvgPicture.asset("assets/images/logo.svg"),
-          ),
+          // Positioned(
+          //   right: 20,
+          //   child: SvgPicture.asset("assets/images/logo.svg"),
+          // ),
         ],
       ),
     );
