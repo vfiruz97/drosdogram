@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:drosdogram/domain/objects/main_objects/slider.dart' as s;
 import 'package:drosdogram/presentation/core/dialog_templates/ipoteka_create_form_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/green_button_widget.dart';
@@ -18,7 +19,7 @@ class FirstTypeCarouselItemWidget extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(slider.image),
+          image: CachedNetworkImageProvider(slider.image),
           fit: BoxFit.fill,
         ),
       ),
@@ -34,7 +35,7 @@ class FirstTypeCarouselItemWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Style.carouselItemSecondStyle,
           ),
-          if (slider.isPop == "1")
+          if (slider.isPop == "1" && slider.link == '#pop-hypothec')
             GreenButtonWidget(
               label: slider.linkText,
               onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(context),

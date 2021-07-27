@@ -5,7 +5,6 @@ import 'package:drosdogram/presentation/auth_screens/register_screen/register_co
 import 'package:drosdogram/presentation/auth_screens/register_screen/register_screen.dart';
 import 'package:drosdogram/presentation/core/dialog_templates/dispaly_dialog_templates.dart';
 import 'package:drosdogram/presentation/home_screen/home_screen.dart';
-import 'package:drosdogram/presentation/home_screen/orders/create_order_screen.dart';
 import 'package:drosdogram/presentation/order_screens/order_chat/order_chat_screen.dart';
 import 'package:drosdogram/presentation/order_screens/order_list/order_list_screen.dart';
 import 'package:drosdogram/presentation/profile_screen/profile_screen.dart';
@@ -34,6 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          lazy: false,
           create: (context) =>
               getIt<AuthBloc>()..add(const AuthEvent.checkAuthToken()),
         ),
@@ -149,15 +149,15 @@ class DisplayScreens extends StatelessWidget {
           //   ),
           //   child: const Text('DisplayObjectHomeScreen'),
           // ),
-          TextButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CreateOrderFormScreen(),
-              ),
-            ),
-            child: const Text('CreateOrderFormScreen'),
-          ),
+          // TextButton(
+          //   onPressed: () => Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => const CreateOrderFormScreen(),
+          //     ),
+          //   ),
+          //   child: const Text('CreateOrderFormScreen'),
+          // ),
           TextButton(
             onPressed: () => Navigator.push(
               context,

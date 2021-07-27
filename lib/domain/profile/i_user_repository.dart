@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:drosdogram/domain/profile/agency.dart';
+import 'package:drosdogram/domain/profile/faq.dart';
 import 'package:drosdogram/domain/profile/profile_failure.dart';
 import 'package:drosdogram/domain/profile/user_info.dart';
 
@@ -12,4 +13,5 @@ abstract class IUserRepository {
     required String name,
     required String emailAddress,
   });
+  Future<Either<ProfileFailure, List<Faq>>> getFaq();
 }

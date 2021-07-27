@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class Style {
@@ -310,7 +311,7 @@ class Style {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(width: 0.1),
         image: DecorationImage(
-          image: NetworkImage(backImage),
+          image: CachedNetworkImageProvider(backImage),
           fit: BoxFit.fill,
         ),
       );

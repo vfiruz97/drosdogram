@@ -1,3 +1,4 @@
+import 'package:drosdogram/aplication/screen_bottom_navigator/screen_nav_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,10 +16,15 @@ class ScreenBottomNavigator extends StatelessWidget {
       create: (context) => BottomNavBloc(),
       child: Scaffold(
         body: const SafeArea(child: BottomNavBodyWidget()),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: const Color.fromRGBO(255, 213, 0, 1),
-          child: SvgPicture.asset("assets/images/support.svg"),
+        floatingActionButton: BlocBuilder<BottomNavBloc, BottomNavState>(
+          builder: (context, state) {
+            return FloatingActionButton(
+              onPressed: () => BlocProvider.of<BottomNavBloc>(context)
+                  .add(const BottomNavEvent.changeTo(scr: FaqScr())),
+              backgroundColor: const Color.fromRGBO(255, 213, 0, 1),
+              child: SvgPicture.asset("assets/images/support.svg"),
+            );
+          },
         ),
         bottomNavigationBar: const BottomNavBarWidget(),
       ),

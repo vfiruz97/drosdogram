@@ -39,7 +39,7 @@ class _CarouselWithIndicatorState extends State<SliderWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 350,
+      height: 270,
       child: Stack(
         alignment: Alignment.center,
         children: [

@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:drosdogram/domain/auth/user.dart';
 import 'package:drosdogram/domain/auth/auth_failure.dart';
 import 'package:drosdogram/domain/core/errors.dart';
+import 'package:drosdogram/domain/core/value_objects.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:drosdogram/domain/auth/i_auth_facade.dart';

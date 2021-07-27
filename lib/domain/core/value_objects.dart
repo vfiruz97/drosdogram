@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:drosdogram/domain/core/errors.dart';
 import 'package:drosdogram/domain/core/failure.dart';
+import 'package:drosdogram/domain/core/value_validators.dart';
 
 abstract class ValueObject<T> {
   const ValueObject();
@@ -31,4 +32,26 @@ abstract class ValueObject<T> {
 
   @override
   String toString() => 'Value($value)';
+}
+
+class Name extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Name(String value) {
+    return Name._(validateStringIsNotShort(value, length: 2));
+  }
+
+  const Name._(this.value);
+}
+
+class Phone extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Phone(String value) {
+    return Phone._(validatePhoneNumber(value));
+  }
+
+  const Phone._(this.value);
 }

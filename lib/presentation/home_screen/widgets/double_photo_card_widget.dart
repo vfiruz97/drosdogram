@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class DoublePhotoCardWidget extends StatelessWidget {
@@ -24,9 +25,9 @@ class DoublePhotoCardWidget extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 7, right: 3.5),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      images[index],
-                      height: 140.0,
+                    child: CachedNetworkImage(
+                      imageUrl: images[index],
+                      height: 140,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -38,9 +39,9 @@ class DoublePhotoCardWidget extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 7, left: 3.5),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          images[index + 1],
-                          height: 140.0,
+                        child: CachedNetworkImage(
+                          imageUrl: images[index + 1],
+                          height: 140,
                           fit: BoxFit.fill,
                         ),
                       ),

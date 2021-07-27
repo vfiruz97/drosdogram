@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:drosdogram/domain/auth/value_objects.dart';
+import 'package:drosdogram/domain/core/value_objects.dart';
 import 'package:drosdogram/domain/profile/agency.dart';
+import 'package:drosdogram/domain/profile/faq.dart';
 import 'package:drosdogram/domain/profile/i_user_repository.dart';
 import 'package:drosdogram/domain/profile/user_info.dart';
 import 'package:drosdogram/domain/profile/profile_failure.dart';
@@ -91,6 +92,28 @@ class UserRepository implements IUserRepository {
             name: Name(_body['agency']['name'].toString()),
           ),
         );
+      } else {
+        return left(ProfileFailure.responseError(
+          _body['notice'] != null
+              ? _body['notice'].toString()
+              : "Произашло не известная ошибка",
+        ));
+      }
+    } catch (e) {
+      return left(const ProfileFailure.responseError("Ошибка в сети"));
+    }
+  }
+
+  @override
+  Future<Either<ProfileFailure, List<Faq>>> getFaq() async {
+    try {
+      final _response = await http.post(faqUrl);
+      final _body = jsonDecode(_response.toString());
+      if (_response.statusCode == 200) {
+        final _faq = (_body as List)
+            .map((e) => Faq.fromJson(e as Map<String, dynamic>))
+            .toList();
+        return right(_faq);
       } else {
         return left(ProfileFailure.responseError(
           _body['notice'] != null

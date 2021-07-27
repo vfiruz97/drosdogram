@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:drosdogram/domain/auth/auth_failure.dart';
 import 'package:drosdogram/domain/auth/user.dart';
 import 'package:drosdogram/domain/auth/value_objects.dart';
+import 'package:drosdogram/domain/core/value_objects.dart';
 
 abstract class IAuthFacade {
   Future<Option<AuthToken>> getUserAuthToken();

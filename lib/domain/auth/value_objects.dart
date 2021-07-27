@@ -14,28 +14,6 @@ class AuthToken extends ValueObject<String> {
   const AuthToken._(this.value);
 }
 
-class Name extends ValueObject<String> {
-  @override
-  final Either<ValueFailure<String>, String> value;
-
-  factory Name(String value) {
-    return Name._(validateStringIsNotShort(value, length: 2));
-  }
-
-  const Name._(this.value);
-}
-
-class Phone extends ValueObject<String> {
-  @override
-  final Either<ValueFailure<String>, String> value;
-
-  factory Phone(String value) {
-    return Phone._(validatePhoneNumber(value));
-  }
-
-  const Phone._(this.value);
-}
-
 class SmsCode extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;

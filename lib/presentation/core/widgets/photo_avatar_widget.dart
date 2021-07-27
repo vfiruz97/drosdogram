@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:drosdogram/aplication/profile/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,8 +78,8 @@ class _PhotoAvatarWidgetState extends State<PhotoAvatarWidget> {
               height: 100,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100.0),
-                child: Image.network(
-                  widget.imageSrc ??
+                child: CachedNetworkImage(
+                  imageUrl: widget.imageSrc ??
                       'https://drosdogram.pixelation.ru/uploads/slider/1d2631340cf9eb0b.png',
                   fit: BoxFit.fill,
                 ),

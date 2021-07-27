@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drosdogram/domain/auth/auth_failure.dart';
 import 'package:drosdogram/domain/auth/i_auth_facade.dart';
-import 'package:drosdogram/domain/auth/value_objects.dart';
+import 'package:drosdogram/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 

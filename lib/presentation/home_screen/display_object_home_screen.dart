@@ -26,10 +26,6 @@ class DisplayObjectHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(object);
-    const String itemImage =
-        "https://cdn.mskguru.ru/uploads/flats/3836/kvartry-v-zhk-dom-u-reki-1446624279,9474.jpg";
-
     return SizedBox(
       height: Config.getScreenHeight(context),
       child: Stack(
@@ -88,14 +84,17 @@ class DisplayObjectHomeScreen extends StatelessWidget {
                   YellowButtonWidget(
                     label: 'Подать заявку',
                     isDisable: false,
-                    onTap: () {},
+                    onTap: () => BlocProvider.of<BottomNavBloc>(context).add(
+                        BottomNavEvent.changeTo(
+                            scr: const HomeOrderFormScr(), data: object)),
                     width: double.infinity,
                   ),
                   const SizedBox(height: 15),
                   OutlineButtonWidget(
                     label: 'Подать заявку на ипотеку',
-                    onTap: () =>
-                        IpotekaCreateFormWidget.showIpotekaDialog(context),
+                    onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(
+                        context,
+                        objectName: object.name),
                     width: double.infinity,
                     color: const Color.fromRGBO(33, 160, 56, 1),
                   ),

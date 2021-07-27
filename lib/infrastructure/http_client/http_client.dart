@@ -15,6 +15,10 @@ const String agencyUrl = 'agency';
 const String createAgencyUrl = 'agency/add';
 const String objectUrl = 'object';
 const String sliderUrl = 'slider';
+const String hypothecUrl = 'feedback/hypothec';
+const String addRequestUrl = 'request/add';
+const String faqUrl = 'faq';
+const String agentRequestUrl = 'request';
 
 @lazySingleton
 class HttpClient {
@@ -38,7 +42,7 @@ class HttpClient {
     try {
       dio.options.headers['Authorization'] = _authToken;
       final Response _response = await dio.post(url, data: data);
-      print("token:-: $_authToken | $url");
+      print("token:-: $_authToken | $url\n${DateTime.now().toString()}");
       print(_response);
       return _response;
     } catch (e) {
@@ -60,17 +64,17 @@ class HttpClient {
   Future<void> test() async {
     try {
       dio.options.headers['Authorization'] = _authToken;
-      final Response _response = await dio.get('object');
-      print(_response);
+      final Response _response =
+          await dio.post('request', data: {'object_id': '33'});
       final _body = jsonDecode(_response.toString());
+      print(_response);
+      print("=====================");
       print(_body);
-      if (_response.statusCode == 200) {
+      if (_response.statusCode == 200 && _body['status'] == true) {
         //
-      } else {
-        print('errprr');
       }
     } catch (e) {
-      print(e.toString());
+      //
     }
   }
 }

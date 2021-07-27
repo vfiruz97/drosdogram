@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drosdogram/domain/auth/value_objects.dart';
+import 'package:drosdogram/domain/core/value_objects.dart';
 import 'package:drosdogram/domain/profile/agency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

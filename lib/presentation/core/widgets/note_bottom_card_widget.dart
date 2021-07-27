@@ -11,7 +11,7 @@ class NoteBottomCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 189,
+      height: 169,
       color: backgroundColor,
       padding: const EdgeInsets.all(24),
       child: Column(

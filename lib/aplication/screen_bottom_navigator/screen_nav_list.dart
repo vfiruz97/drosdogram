@@ -19,10 +19,18 @@ class HomeDisplayObjectScr extends NavScreen {
   const HomeDisplayObjectScr() : super(index: 0, name: 'HomeDisplayObjectScr');
 }
 
+class HomeOrderFormScr extends NavScreen {
+  const HomeOrderFormScr() : super(index: 0, name: 'HomeOrderFormScr');
+}
+
 class RequestScr extends NavScreen {
   const RequestScr() : super(index: 1, name: 'RequestScr');
 }
 
 class ProfileScr extends NavScreen {
   const ProfileScr() : super(index: 2, name: 'ProfileScr');
+}
+
+class FaqScr extends NavScreen {
+  const FaqScr() : super(index: 3, name: 'FaqScr');
 }
