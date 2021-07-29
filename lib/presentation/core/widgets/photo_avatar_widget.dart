@@ -26,6 +26,7 @@ class _PhotoAvatarWidgetState extends State<PhotoAvatarWidget> {
 
   Future<void> _imgFromGallery() async {
     try {
+      FocusScope.of(context).unfocus();
       final value = await ImagePicker().pickImage(source: ImageSource.gallery);
 
       if (value != null) {

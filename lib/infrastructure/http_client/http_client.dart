@@ -19,6 +19,8 @@ const String hypothecUrl = 'feedback/hypothec';
 const String addRequestUrl = 'request/add';
 const String faqUrl = 'faq';
 const String agentRequestUrl = 'request';
+const String deleteRequestUrl = 'request/delete';
+const String chatUrl = 'chat';
 
 @lazySingleton
 class HttpClient {
@@ -64,18 +66,25 @@ class HttpClient {
   Future<void> test() async {
     try {
       dio.options.headers['Authorization'] = _authToken;
-      final Response _response =
-          await dio.post('request', data: {'object_id': '33'});
+      final Response _response = await dio.post('chat', data: {
+        'prev': true,
+        'request_id': 51,
+        'message_id': 221,
+      });
       final _body = jsonDecode(_response.toString());
-      print(_response);
-      print("=====================");
-      print(_body);
+      printWrapped(_response.toString());
       if (_response.statusCode == 200 && _body['status'] == true) {
         //
       }
     } catch (e) {
       //
+
     }
+  }
+
+  void printWrapped(String text) {
+    final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
+    pattern.allMatches(text).forEach((match) => print(match.group(0)));
   }
 }
 

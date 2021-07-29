@@ -13,6 +13,7 @@ class MultiFilesUploadWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Future<void> _uploadImages() async {
       try {
+        FocusScope.of(context).unfocus();
         final value = await ImagePicker().pickMultiImage();
         if (value != null) {
           context.read<OrderFormBloc>().add(

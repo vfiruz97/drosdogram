@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:path/path.dart' as p;
 import 'package:drosdogram/domain/objects/main_objects/agent_request.dart';
 import 'package:drosdogram/domain/objects/main_objects/bobject.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drosdogram/domain/objects/main_objects/i_object_repository.dart';
+import 'package:drosdogram/domain/objects/main_objects/message.dart';
 import 'package:drosdogram/domain/objects/main_objects/object_failure.dart';
 import 'package:drosdogram/domain/objects/main_objects/order.dart';
 import 'package:drosdogram/domain/objects/main_objects/slider.dart';
@@ -91,10 +94,8 @@ class ObjectRepository implements IObjectRepository {
       {required OrderM order}) async {
     try {
       final data = order.toJson();
-      print(data);
       final _response = await http.post(addRequestUrl, data: data);
       final _body = jsonDecode(_response.toString());
-      print(_body);
       if (_response.statusCode == 200 && _body['success'] == true) {
         return right(unit);
       } else {
@@ -113,7 +114,6 @@ class ObjectRepository implements IObjectRepository {
   Future<Either<BobjectFailure, List<AgentRequest>>> getAgentRequests(
       {String objectId = "0"}) async {
     try {
-      print("objectId $objectId");
       final _response = await http.post(agentRequestUrl, data: {
         "object_id": objectId,
       });
@@ -123,6 +123,99 @@ class ObjectRepository implements IObjectRepository {
             .map((e) => AgentRequest.fromJson(e as Map<String, dynamic>))
             .toList();
         return right(_requests);
+      } else {
+        return left(BobjectFailure.badResponse(
+          _body['notice'] != null
+              ? _body['notice'].toString()
+              : "Произашло не известная ошибка",
+        ));
+      }
+    } catch (e) {
+      return left(const BobjectFailure.badResponse("Ошибка в сети"));
+    }
+  }
+
+  @override
+  Future<Either<BobjectFailure, Unit>> deleteAgentRequest(
+      {required String requestId}) async {
+    try {
+      final _response = await http.post(deleteRequestUrl, data: {
+        "request_id": requestId,
+      });
+      final _body = jsonDecode(_response.toString());
+      if (_response.statusCode == 200) {
+        return right(unit);
+      } else {
+        return left(BobjectFailure.badResponse(
+          _body['notice'] != null
+              ? _body['notice'].toString()
+              : "Произашло не известная ошибка",
+        ));
+      }
+    } catch (e) {
+      return left(const BobjectFailure.badResponse("Ошибка в сети"));
+    }
+  }
+
+  @override
+  Future<Either<BobjectFailure, List<Message>>> getPrevMessage({
+    required String requestId,
+    String? lastMessageId,
+  }) async {
+    try {
+      final data = {
+        'prev': true,
+        'request_id': requestId,
+        'message_id': lastMessageId,
+      };
+      final _response = await http.post(chatUrl, data: data);
+      if (_response.toString() == "false") {
+        return right([]);
+      }
+      final _body = jsonDecode(_response.toString());
+      if (_response.statusCode == 200) {
+        final _messages = (_body as List)
+            .map((e) => Message.fromJson(e as Map<String, dynamic>))
+            .toList();
+        return right(_messages);
+      } else {
+        return left(BobjectFailure.badResponse(
+          _body['notice'] != null
+              ? _body['notice'].toString()
+              : "Произашло не известная ошибка",
+        ));
+      }
+    } catch (e) {
+      return left(const BobjectFailure.badResponse("Ошибка в сети"));
+    }
+  }
+
+  @override
+  Future<Either<BobjectFailure, List<Message>>> sendChatMessage({
+    required String requestId,
+    String? lastMessageId,
+    required String message,
+    String? file,
+  }) async {
+    try {
+      final data = {
+        'send': true,
+        'message': message,
+        'request_id': requestId,
+        'message_id': lastMessageId,
+        'file': file != null
+            ? "data:image/${p.extension(file).substring(1)};base64,${base64.encode(File(file).readAsBytesSync())}"
+            : null,
+      };
+      print(data);
+      final _response = await http.post(chatUrl, data: data);
+      final _body = jsonDecode(_response.toString());
+      print(_body);
+      if (_response.statusCode == 200) {
+        final _messages = (_body as List)
+            .map((e) => Message.fromJson(e as Map<String, dynamic>))
+            .toList();
+        return right(_messages);
       } else {
         return left(BobjectFailure.badResponse(
           _body['notice'] != null

@@ -7,24 +7,25 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'aplication/auth/auth_bloc.dart' as _i23;
-import 'aplication/auth/password_recovery/password_recovery_bloc.dart' as _i20;
-import 'aplication/auth/register/register_bloc.dart' as _i21;
-import 'aplication/auth/sign-in-form/sign_in_form_bloc.dart' as _i22;
+import 'aplication/auth/auth_bloc.dart' as _i24;
+import 'aplication/auth/password_recovery/password_recovery_bloc.dart' as _i21;
+import 'aplication/auth/register/register_bloc.dart' as _i22;
+import 'aplication/auth/sign-in-form/sign_in_form_bloc.dart' as _i23;
 import 'aplication/objects/agent_request/agent_request_bloc.dart' as _i14;
-import 'aplication/objects/hypothec/hypothec_bloc.dart' as _i17;
+import 'aplication/objects/chat_message/chat_message_bloc.dart' as _i16;
+import 'aplication/objects/hypothec/hypothec_bloc.dart' as _i18;
 import 'aplication/objects/object/object_bloc.dart' as _i9;
 import 'aplication/objects/order_form/order_form_bloc.dart' as _i10;
 import 'aplication/objects/slider/slider_bloc.dart' as _i12;
 import 'aplication/profile/agency_form/agency_form_bloc.dart' as _i13;
-import 'aplication/profile/faq/faq_bloc.dart' as _i16;
+import 'aplication/profile/faq/faq_bloc.dart' as _i17;
 import 'aplication/profile/profile_bloc.dart' as _i11;
-import 'domain/auth/i_auth_facade.dart' as _i18;
+import 'domain/auth/i_auth_facade.dart' as _i19;
 import 'domain/objects/main_objects/i_object_repository.dart' as _i5;
 import 'domain/profile/i_user_repository.dart' as _i7;
-import 'infrastructure/auth/auth_facade.dart' as _i19;
+import 'infrastructure/auth/auth_facade.dart' as _i20;
 import 'infrastructure/auth/auth_repository.dart' as _i15;
-import 'infrastructure/core/injection_modules.dart' as _i24;
+import 'infrastructure/core/injection_modules.dart' as _i25;
 import 'infrastructure/database/file_storage/file_storage.dart' as _i3;
 import 'infrastructure/http_client/http_client.dart' as _i4;
 import 'infrastructure/objects/object_repository.dart' as _i6;
@@ -55,19 +56,21 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i14.AgentRequestBloc(get<_i5.IObjectRepository>()));
   gh.lazySingleton<_i15.AuthRepository>(
       () => _i15.AuthRepository(get<_i3.FileStorage>()));
-  gh.factory<_i16.FaqBloc>(() => _i16.FaqBloc(get<_i7.IUserRepository>()));
-  gh.factory<_i17.HypothecBloc>(
-      () => _i17.HypothecBloc(get<_i5.IObjectRepository>()));
-  gh.lazySingleton<_i18.IAuthFacade>(
-      () => _i19.AuthFacade(repo: get<_i15.AuthRepository>()));
-  gh.factory<_i20.PasswordRecoveryBloc>(
-      () => _i20.PasswordRecoveryBloc(get<_i18.IAuthFacade>()));
-  gh.factory<_i21.RegisterBloc>(
-      () => _i21.RegisterBloc(get<_i18.IAuthFacade>()));
-  gh.factory<_i22.SignInFormBloc>(
-      () => _i22.SignInFormBloc(get<_i18.IAuthFacade>()));
-  gh.factory<_i23.AuthBloc>(() => _i23.AuthBloc(get<_i18.IAuthFacade>()));
+  gh.factory<_i16.ChatMessageBloc>(
+      () => _i16.ChatMessageBloc(get<_i5.IObjectRepository>()));
+  gh.factory<_i17.FaqBloc>(() => _i17.FaqBloc(get<_i7.IUserRepository>()));
+  gh.factory<_i18.HypothecBloc>(
+      () => _i18.HypothecBloc(get<_i5.IObjectRepository>()));
+  gh.lazySingleton<_i19.IAuthFacade>(
+      () => _i20.AuthFacade(repo: get<_i15.AuthRepository>()));
+  gh.factory<_i21.PasswordRecoveryBloc>(
+      () => _i21.PasswordRecoveryBloc(get<_i19.IAuthFacade>()));
+  gh.factory<_i22.RegisterBloc>(
+      () => _i22.RegisterBloc(get<_i19.IAuthFacade>()));
+  gh.factory<_i23.SignInFormBloc>(
+      () => _i23.SignInFormBloc(get<_i19.IAuthFacade>()));
+  gh.factory<_i24.AuthBloc>(() => _i24.AuthBloc(get<_i19.IAuthFacade>()));
   return get;
 }
 
-class _$InjactableModule extends _i24.InjactableModule {}
+class _$InjactableModule extends _i25.InjactableModule {}

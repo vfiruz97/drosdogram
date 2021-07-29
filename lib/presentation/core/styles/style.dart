@@ -204,6 +204,29 @@ class Style {
     color: Colors.black,
   );
 
+  static const chatBubbleFirstStyle = TextStyle(
+    height: 1,
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    fontSize: 12,
+    color: Color.fromRGBO(0, 0, 0, 0.8),
+  );
+
+  static const chatBubbleSecondStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    fontSize: 10,
+  );
+
+  static const chatBubbleThirdStyle = TextStyle(
+    fontFamily: "CeraRoundPro",
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    fontSize: 10,
+  );
+
   static TextStyle underlinedButtonStyle({Color? color}) => TextStyle(
         color: color,
         fontFamily: "CeraRoundPro",
@@ -359,4 +382,12 @@ class Style {
       ),
     ],
   );
+
+  static BoxDecoration chatBubbleDecoration({required bool isMyMessage}) =>
+      BoxDecoration(
+        color: isMyMessage
+            ? const Color.fromRGBO(255, 213, 0, 1)
+            : const Color.fromRGBO(0, 0, 0, 0.05),
+        borderRadius: BorderRadius.circular(8),
+      );
 }

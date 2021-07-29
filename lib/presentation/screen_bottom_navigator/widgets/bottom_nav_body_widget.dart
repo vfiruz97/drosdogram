@@ -2,13 +2,14 @@ import 'package:drosdogram/aplication/objects/agent_request/agent_request_bloc.d
 import 'package:drosdogram/aplication/objects/object/object_bloc.dart';
 import 'package:drosdogram/aplication/objects/slider/slider_bloc.dart';
 import 'package:drosdogram/aplication/profile/faq/faq_bloc.dart';
-import 'package:drosdogram/aplication/profile/profile_bloc.dart';
+import 'package:drosdogram/domain/objects/main_objects/agent_request.dart';
 import 'package:drosdogram/domain/objects/main_objects/bobject.dart';
 import 'package:drosdogram/injection.dart';
 import 'package:drosdogram/presentation/faq/faq_screen.dart';
 import 'package:drosdogram/presentation/home_screen/display_object_home_screen.dart';
 import 'package:drosdogram/presentation/home_screen/home_screen.dart';
 import 'package:drosdogram/presentation/home_screen/orders/create_order_screen.dart';
+import 'package:drosdogram/presentation/order_screens/order_chat/order_chat_screen.dart';
 import 'package:drosdogram/presentation/order_screens/order_list/order_list_screen.dart';
 import 'package:drosdogram/presentation/profile_screen/profile_screen.dart';
 import 'package:drosdogram/presentation/splash_screen/load_widget.dart';
@@ -27,10 +28,6 @@ class BottomNavBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            lazy: false,
-            create: (context) =>
-                getIt<ProfileBloc>()..add(const ProfileEvent.getUserInfo())),
         BlocProvider(
             lazy: false,
             create: (context) =>
@@ -65,6 +62,11 @@ class BottomNavBodyWidget extends StatelessWidget {
               return const LoadWidget();
             case RequestScr():
               return const OrderListScreen();
+            case RequestChatScr():
+              if (state.data != null && state.data is AgentRequest) {
+                return OrderChatScreen(request: state.data as AgentRequest);
+              }
+              return const LoadWidget();
             case ProfileScr():
               return const ProfileScreen();
             case FaqScr():

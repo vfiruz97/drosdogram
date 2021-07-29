@@ -1,3 +1,4 @@
+import 'package:drosdogram/presentation/core/widgets/object_widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoadWidget extends StatelessWidget {
@@ -7,12 +8,9 @@ class LoadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-          color: Colors.yellow,
-        ),
+        child: CircularProgressIndicatorWidget(),
       ),
     );
   }

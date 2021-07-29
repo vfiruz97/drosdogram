@@ -20,6 +20,12 @@ class _$AgentRequestEventTearOff {
     return const _GetAgentRequests();
   }
 
+  _DeleteAgentRequest deleteAgentRequest({required String requestId}) {
+    return _DeleteAgentRequest(
+      requestId: requestId,
+    );
+  }
+
   _ChangeObjectId changeObjectId({required String objectId}) {
     return _ChangeObjectId(
       objectId: objectId,
@@ -35,12 +41,14 @@ mixin _$AgentRequestEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAgentRequests,
+    required TResult Function(String requestId) deleteAgentRequest,
     required TResult Function(String objectId) changeObjectId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAgentRequests,
+    TResult Function(String requestId)? deleteAgentRequest,
     TResult Function(String objectId)? changeObjectId,
     required TResult orElse(),
   }) =>
@@ -48,12 +56,14 @@ mixin _$AgentRequestEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAgentRequests value) getAgentRequests,
+    required TResult Function(_DeleteAgentRequest value) deleteAgentRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAgentRequests value)? getAgentRequests,
+    TResult Function(_DeleteAgentRequest value)? deleteAgentRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     required TResult orElse(),
   }) =>
@@ -118,6 +128,7 @@ class _$_GetAgentRequests implements _GetAgentRequests {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAgentRequests,
+    required TResult Function(String requestId) deleteAgentRequest,
     required TResult Function(String objectId) changeObjectId,
   }) {
     return getAgentRequests();
@@ -127,6 +138,7 @@ class _$_GetAgentRequests implements _GetAgentRequests {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAgentRequests,
+    TResult Function(String requestId)? deleteAgentRequest,
     TResult Function(String objectId)? changeObjectId,
     required TResult orElse(),
   }) {
@@ -140,6 +152,7 @@ class _$_GetAgentRequests implements _GetAgentRequests {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAgentRequests value) getAgentRequests,
+    required TResult Function(_DeleteAgentRequest value) deleteAgentRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
   }) {
     return getAgentRequests(this);
@@ -149,6 +162,7 @@ class _$_GetAgentRequests implements _GetAgentRequests {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAgentRequests value)? getAgentRequests,
+    TResult Function(_DeleteAgentRequest value)? deleteAgentRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     required TResult orElse(),
   }) {
@@ -161,6 +175,128 @@ class _$_GetAgentRequests implements _GetAgentRequests {
 
 abstract class _GetAgentRequests implements AgentRequestEvent {
   const factory _GetAgentRequests() = _$_GetAgentRequests;
+}
+
+/// @nodoc
+abstract class _$DeleteAgentRequestCopyWith<$Res> {
+  factory _$DeleteAgentRequestCopyWith(
+          _DeleteAgentRequest value, $Res Function(_DeleteAgentRequest) then) =
+      __$DeleteAgentRequestCopyWithImpl<$Res>;
+  $Res call({String requestId});
+}
+
+/// @nodoc
+class __$DeleteAgentRequestCopyWithImpl<$Res>
+    extends _$AgentRequestEventCopyWithImpl<$Res>
+    implements _$DeleteAgentRequestCopyWith<$Res> {
+  __$DeleteAgentRequestCopyWithImpl(
+      _DeleteAgentRequest _value, $Res Function(_DeleteAgentRequest) _then)
+      : super(_value, (v) => _then(v as _DeleteAgentRequest));
+
+  @override
+  _DeleteAgentRequest get _value => super._value as _DeleteAgentRequest;
+
+  @override
+  $Res call({
+    Object? requestId = freezed,
+  }) {
+    return _then(_DeleteAgentRequest(
+      requestId: requestId == freezed
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_DeleteAgentRequest implements _DeleteAgentRequest {
+  const _$_DeleteAgentRequest({required this.requestId});
+
+  @override
+  final String requestId;
+
+  @override
+  String toString() {
+    return 'AgentRequestEvent.deleteAgentRequest(requestId: $requestId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DeleteAgentRequest &&
+            (identical(other.requestId, requestId) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestId, requestId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(requestId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DeleteAgentRequestCopyWith<_DeleteAgentRequest> get copyWith =>
+      __$DeleteAgentRequestCopyWithImpl<_DeleteAgentRequest>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getAgentRequests,
+    required TResult Function(String requestId) deleteAgentRequest,
+    required TResult Function(String objectId) changeObjectId,
+  }) {
+    return deleteAgentRequest(requestId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAgentRequests,
+    TResult Function(String requestId)? deleteAgentRequest,
+    TResult Function(String objectId)? changeObjectId,
+    required TResult orElse(),
+  }) {
+    if (deleteAgentRequest != null) {
+      return deleteAgentRequest(requestId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAgentRequests value) getAgentRequests,
+    required TResult Function(_DeleteAgentRequest value) deleteAgentRequest,
+    required TResult Function(_ChangeObjectId value) changeObjectId,
+  }) {
+    return deleteAgentRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAgentRequests value)? getAgentRequests,
+    TResult Function(_DeleteAgentRequest value)? deleteAgentRequest,
+    TResult Function(_ChangeObjectId value)? changeObjectId,
+    required TResult orElse(),
+  }) {
+    if (deleteAgentRequest != null) {
+      return deleteAgentRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteAgentRequest implements AgentRequestEvent {
+  const factory _DeleteAgentRequest({required String requestId}) =
+      _$_DeleteAgentRequest;
+
+  String get requestId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$DeleteAgentRequestCopyWith<_DeleteAgentRequest> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -230,6 +366,7 @@ class _$_ChangeObjectId implements _ChangeObjectId {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAgentRequests,
+    required TResult Function(String requestId) deleteAgentRequest,
     required TResult Function(String objectId) changeObjectId,
   }) {
     return changeObjectId(objectId);
@@ -239,6 +376,7 @@ class _$_ChangeObjectId implements _ChangeObjectId {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAgentRequests,
+    TResult Function(String requestId)? deleteAgentRequest,
     TResult Function(String objectId)? changeObjectId,
     required TResult orElse(),
   }) {
@@ -252,6 +390,7 @@ class _$_ChangeObjectId implements _ChangeObjectId {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAgentRequests value) getAgentRequests,
+    required TResult Function(_DeleteAgentRequest value) deleteAgentRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
   }) {
     return changeObjectId(this);
@@ -261,6 +400,7 @@ class _$_ChangeObjectId implements _ChangeObjectId {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAgentRequests value)? getAgentRequests,
+    TResult Function(_DeleteAgentRequest value)? deleteAgentRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     required TResult orElse(),
   }) {

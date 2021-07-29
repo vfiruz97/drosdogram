@@ -33,15 +33,17 @@ class AgentRequestBloc extends Bloc<AgentRequestEvent, AgentRequestState> {
           failureOrOption: none(),
         );
 
-        final _objects = await _repository.getObjectList();
-        final Map<String, String> _obj = {"0": "Все"};
-        for (final Bobject o in _objects.fold((l) => [], (_o) => _o)) {
-          _obj[o.id] = o.name;
+        if (state.objects.length == 1 || state.objects.isEmpty) {
+          final _objects = await _repository.getObjectList();
+          final Map<String, String> _obj = {"0": "Все"};
+          for (final Bobject o in _objects.fold((l) => [], (_o) => _o)) {
+            _obj[o.id] = o.name;
+          }
+          yield state.copyWith(
+            objects: _obj,
+            failureOrOption: none(),
+          );
         }
-        yield state.copyWith(
-          objects: _obj,
-          failureOrOption: none(),
-        );
 
         final _res = await _repository.getAgentRequests(
             objectId: state.selectedObjectId);
@@ -76,6 +78,10 @@ class AgentRequestBloc extends Bloc<AgentRequestEvent, AgentRequestState> {
             failureOrOption: some(right(unit)),
           ),
         );
+      },
+      deleteAgentRequest: (e) async* {
+        await _repository.deleteAgentRequest(requestId: e.requestId);
+        add(const AgentRequestEvent.getAgentRequests());
       },
     );
   }

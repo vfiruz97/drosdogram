@@ -1,8 +1,11 @@
+import 'package:drosdogram/aplication/screen_bottom_navigator/bottom_nav_bloc.dart';
+import 'package:drosdogram/aplication/screen_bottom_navigator/screen_nav_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:drosdogram/domain/objects/main_objects/agent_request.dart';
 import 'package:drosdogram/presentation/core/styles/style.dart';
 import 'package:drosdogram/presentation/core/widgets/circle_avatar_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ObjectInfoCardWidget extends StatelessWidget {
   const ObjectInfoCardWidget({
@@ -15,7 +18,11 @@ class ObjectInfoCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () =>
+          BlocProvider.of<BottomNavBloc>(context).add(BottomNavEvent.changeTo(
+        scr: const RequestChatScr(),
+        data: request,
+      )),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Container(

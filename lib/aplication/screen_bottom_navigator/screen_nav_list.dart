@@ -27,6 +27,10 @@ class RequestScr extends NavScreen {
   const RequestScr() : super(index: 1, name: 'RequestScr');
 }
 
+class RequestChatScr extends NavScreen {
+  const RequestChatScr() : super(index: 1, name: 'RequestChatScr');
+}
+
 class ProfileScr extends NavScreen {
   const ProfileScr() : super(index: 2, name: 'ProfileScr');
 }

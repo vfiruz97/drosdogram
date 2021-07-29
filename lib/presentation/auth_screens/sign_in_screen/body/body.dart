@@ -40,6 +40,7 @@ class BodyWidget extends StatelessWidget {
               leftBarIndicatorColor: Colors.red[300],
             )..show(context),
             (_) {
+              Navigator.pushReplacementNamed(context, '/');
               BlocProvider.of<AuthBloc>(context)
                   .add(const AuthEvent.checkAuthToken());
             },
@@ -159,14 +160,15 @@ class BodyWidget extends StatelessWidget {
                         onTap: () {
                           BlocProvider.of<RegisterBloc>(context)
                               .add(const RegisterEvent.initial());
-                          Navigator.pushReplacementNamed(context, '/register-first');
+                          Navigator.pushReplacementNamed(
+                              context, '/register-first');
                         },
                       ),
                       const SizedBox(height: 25),
                       TextUnderlinedButtonWidget(
                         label: 'Забыли в пароль',
-                        onTap: () =>
-                            Navigator.pushReplacementNamed(context, '/password-recovery'),
+                        onTap: () => Navigator.pushReplacementNamed(
+                            context, '/password-recovery'),
                       ),
                     ],
                   ),
