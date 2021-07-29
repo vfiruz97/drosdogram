@@ -1,3 +1,4 @@
+import 'package:drosdogram/aplication/auth/auth_bloc.dart';
 import 'package:drosdogram/aplication/objects/object/object_bloc.dart';
 import 'package:drosdogram/aplication/screen_bottom_navigator/bottom_nav_bloc.dart';
 import 'package:drosdogram/aplication/screen_bottom_navigator/screen_nav_list.dart';
@@ -18,7 +19,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ObjectBloc, ObjectState>(
       listener: (context, state) {
-        // TODO: implement listener
+        state.failureOrOption.fold(
+          () => {},
+          (either) => either.fold(
+            (failure) {
+              failure.maybeMap(
+                invalidToken: (_) {
+                  BlocProvider.of<AuthBloc>(context)
+                      .add(const AuthEvent.signOut());
+                },
+                orElse: () {},
+              );
+            },
+            (_) {},
+          ),
+        );
       },
       builder: (context, state) {
         final _itemCount = state.objects.length;

@@ -33,7 +33,14 @@ class FinishRegisterScreenBodyWidget extends StatelessWidget {
           () => {},
           (either) => either.fold(
             (failure) => Flushbar(
-              message: failure.map(responseError: (f) => f.notice),
+              message: failure.map(
+                responseError: (f) => f.notice,
+                invalidToken: (_) {
+                  BlocProvider.of<AuthBloc>(context)
+                      .add(const AuthEvent.signOut());
+                  return 'Неверный токен';
+                },
+              ),
               icon: Icon(
                 Icons.warning,
                 size: 28.0,
@@ -43,11 +50,9 @@ class FinishRegisterScreenBodyWidget extends StatelessWidget {
               leftBarIndicatorColor: Colors.red[300],
             )..show(context),
             (_) {
-              if (state.userInfo.isComplete == 1) {
-                BlocProvider.of<AuthBloc>(context)
-                    .add(const AuthEvent.removeRegIsComplete());
-                Navigator.pushReplacementNamed(context, '/screen-navigation');
-              }
+              BlocProvider.of<AuthBloc>(context)
+                  .add(const AuthEvent.removeRegIsComplete());
+              Navigator.pushReplacementNamed(context, '/screen-navigation');
             },
           ),
         );

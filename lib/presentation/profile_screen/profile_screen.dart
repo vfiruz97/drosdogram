@@ -33,7 +33,14 @@ class ProfileScreen extends StatelessWidget {
           () => {},
           (either) => either.fold(
             (failure) => Flushbar(
-              message: failure.map(responseError: (f) => f.notice),
+              message: failure.map(
+                responseError: (f) => f.notice,
+                invalidToken: (_) {
+                  BlocProvider.of<AuthBloc>(context)
+                      .add(const AuthEvent.signOut());
+                  return 'Неверный токен';
+                },
+              ),
               icon: Icon(
                 Icons.warning,
                 size: 28.0,

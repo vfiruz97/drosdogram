@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:drosdogram/aplication/auth/auth_bloc.dart';
 import 'package:drosdogram/aplication/profile/agency_form/agency_form_bloc.dart';
 import 'package:drosdogram/injection.dart';
 import 'package:drosdogram/presentation/core/styles/style.dart';
@@ -37,7 +38,14 @@ class AgencyCreateFormWidget extends StatelessWidget {
           () => {},
           (either) => either.fold(
             (failure) => Flushbar(
-              message: failure.map(responseError: (f) => f.notice),
+              message: failure.map(
+                responseError: (f) => f.notice,
+                invalidToken: (_) {
+                  BlocProvider.of<AuthBloc>(context)
+                      .add(const AuthEvent.signOut());
+                  return 'Неверный токен';
+                },
+              ),
               icon: Icon(
                 Icons.warning,
                 size: 28.0,

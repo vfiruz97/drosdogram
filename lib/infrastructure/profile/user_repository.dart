@@ -18,12 +18,13 @@ class UserRepository implements IUserRepository {
       final _response = await http.post(userShowUrl);
       final _body = jsonDecode(_response.toString());
       if (_response.statusCode == 200 &&
-          _body != null &&
-          _body is Map<String, dynamic> &&
-          _body['success'] == null) {
-        final _user = UserInfo.fromJsonC(_body);
+          !(_body is Map && _body.containsKey('notice'))) {
+        final _user = UserInfo.fromJsonC(_body as Map<String, dynamic>);
         return right(_user);
       } else {
+        if (_body['notice'] == 'Неверный токен') {
+          return left(const ProfileFailure.invalidToken());
+        }
         return left(ProfileFailure.responseError(_body['notice'] == null
             ? "Ошибка от сервера"
             : _body['notice'].toString()));

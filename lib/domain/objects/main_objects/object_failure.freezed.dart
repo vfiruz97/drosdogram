@@ -20,6 +20,10 @@ class _$BobjectFailureTearOff {
     return const _Empty();
   }
 
+  _InvalidToken invalidToken() {
+    return const _InvalidToken();
+  }
+
   _BadResponse badResponse(String? notice) {
     return _BadResponse(
       notice,
@@ -39,6 +43,7 @@ mixin _$BobjectFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
+    required TResult Function() invalidToken,
     required TResult Function(String? notice) badResponse,
     required TResult Function() serverError,
   }) =>
@@ -46,6 +51,7 @@ mixin _$BobjectFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
+    TResult Function()? invalidToken,
     TResult Function(String? notice)? badResponse,
     TResult Function()? serverError,
     required TResult orElse(),
@@ -54,6 +60,7 @@ mixin _$BobjectFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
+    required TResult Function(_InvalidToken value) invalidToken,
     required TResult Function(_BadResponse value) badResponse,
     required TResult Function(_ServerError value) serverError,
   }) =>
@@ -61,6 +68,7 @@ mixin _$BobjectFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
+    TResult Function(_InvalidToken value)? invalidToken,
     TResult Function(_BadResponse value)? badResponse,
     TResult Function(_ServerError value)? serverError,
     required TResult orElse(),
@@ -123,6 +131,7 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
+    required TResult Function() invalidToken,
     required TResult Function(String? notice) badResponse,
     required TResult Function() serverError,
   }) {
@@ -133,6 +142,7 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
+    TResult Function()? invalidToken,
     TResult Function(String? notice)? badResponse,
     TResult Function()? serverError,
     required TResult orElse(),
@@ -147,6 +157,7 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
+    required TResult Function(_InvalidToken value) invalidToken,
     required TResult Function(_BadResponse value) badResponse,
     required TResult Function(_ServerError value) serverError,
   }) {
@@ -157,6 +168,7 @@ class _$_Empty implements _Empty {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
+    TResult Function(_InvalidToken value)? invalidToken,
     TResult Function(_BadResponse value)? badResponse,
     TResult Function(_ServerError value)? serverError,
     required TResult orElse(),
@@ -170,6 +182,100 @@ class _$_Empty implements _Empty {
 
 abstract class _Empty implements BobjectFailure {
   const factory _Empty() = _$_Empty;
+}
+
+/// @nodoc
+abstract class _$InvalidTokenCopyWith<$Res> {
+  factory _$InvalidTokenCopyWith(
+          _InvalidToken value, $Res Function(_InvalidToken) then) =
+      __$InvalidTokenCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$InvalidTokenCopyWithImpl<$Res>
+    extends _$BobjectFailureCopyWithImpl<$Res>
+    implements _$InvalidTokenCopyWith<$Res> {
+  __$InvalidTokenCopyWithImpl(
+      _InvalidToken _value, $Res Function(_InvalidToken) _then)
+      : super(_value, (v) => _then(v as _InvalidToken));
+
+  @override
+  _InvalidToken get _value => super._value as _InvalidToken;
+}
+
+/// @nodoc
+
+class _$_InvalidToken implements _InvalidToken {
+  const _$_InvalidToken();
+
+  @override
+  String toString() {
+    return 'BobjectFailure.invalidToken()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _InvalidToken);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function() invalidToken,
+    required TResult Function(String? notice) badResponse,
+    required TResult Function() serverError,
+  }) {
+    return invalidToken();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? invalidToken,
+    TResult Function(String? notice)? badResponse,
+    TResult Function()? serverError,
+    required TResult orElse(),
+  }) {
+    if (invalidToken != null) {
+      return invalidToken();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_InvalidToken value) invalidToken,
+    required TResult Function(_BadResponse value) badResponse,
+    required TResult Function(_ServerError value) serverError,
+  }) {
+    return invalidToken(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_InvalidToken value)? invalidToken,
+    TResult Function(_BadResponse value)? badResponse,
+    TResult Function(_ServerError value)? serverError,
+    required TResult orElse(),
+  }) {
+    if (invalidToken != null) {
+      return invalidToken(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidToken implements BobjectFailure {
+  const factory _InvalidToken() = _$_InvalidToken;
 }
 
 /// @nodoc
@@ -238,6 +344,7 @@ class _$_BadResponse implements _BadResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
+    required TResult Function() invalidToken,
     required TResult Function(String? notice) badResponse,
     required TResult Function() serverError,
   }) {
@@ -248,6 +355,7 @@ class _$_BadResponse implements _BadResponse {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
+    TResult Function()? invalidToken,
     TResult Function(String? notice)? badResponse,
     TResult Function()? serverError,
     required TResult orElse(),
@@ -262,6 +370,7 @@ class _$_BadResponse implements _BadResponse {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
+    required TResult Function(_InvalidToken value) invalidToken,
     required TResult Function(_BadResponse value) badResponse,
     required TResult Function(_ServerError value) serverError,
   }) {
@@ -272,6 +381,7 @@ class _$_BadResponse implements _BadResponse {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
+    TResult Function(_InvalidToken value)? invalidToken,
     TResult Function(_BadResponse value)? badResponse,
     TResult Function(_ServerError value)? serverError,
     required TResult orElse(),
@@ -333,6 +443,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
+    required TResult Function() invalidToken,
     required TResult Function(String? notice) badResponse,
     required TResult Function() serverError,
   }) {
@@ -343,6 +454,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
+    TResult Function()? invalidToken,
     TResult Function(String? notice)? badResponse,
     TResult Function()? serverError,
     required TResult orElse(),
@@ -357,6 +469,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Empty value) empty,
+    required TResult Function(_InvalidToken value) invalidToken,
     required TResult Function(_BadResponse value) badResponse,
     required TResult Function(_ServerError value) serverError,
   }) {
@@ -367,6 +480,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Empty value)? empty,
+    TResult Function(_InvalidToken value)? invalidToken,
     TResult Function(_BadResponse value)? badResponse,
     TResult Function(_ServerError value)? serverError,
     required TResult orElse(),

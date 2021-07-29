@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:drosdogram/aplication/objects/agent_request/agent_request_bloc.dart';
 import 'package:drosdogram/aplication/objects/order_form/order_form_bloc.dart';
 import 'package:drosdogram/aplication/screen_bottom_navigator/bottom_nav_bloc.dart';
 import 'package:drosdogram/aplication/screen_bottom_navigator/screen_nav_list.dart';
@@ -52,11 +53,12 @@ class CreateOrderFormScreen extends StatelessWidget {
                   duration: const Duration(seconds: 3),
                   leftBarIndicatorColor: Colors.red[300],
                 )..show(context),
-                (_) => BlocProvider.of<BottomNavBloc>(context)
-                    .add(BottomNavEvent.changeTo(
-                  scr: const HomeDisplayObjectScr(),
-                  data: object,
-                )),
+                (_) {
+                  context.read<AgentRequestBloc>().add(
+                      const AgentRequestEvent.changeObjectId(objectId: "0"));
+                  BlocProvider.of<BottomNavBloc>(context)
+                      .add(const BottomNavEvent.changeTo(scr: RequestScr()));
+                },
               ),
             );
           },

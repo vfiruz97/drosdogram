@@ -20,12 +20,16 @@ class ObjectRepository implements IObjectRepository {
     try {
       final _response = await http.post(objectUrl);
       final _body = jsonDecode(_response.toString());
-      if (_response.statusCode == 200) {
+      if (_response.statusCode == 200 &&
+          !(_body is Map && _body.containsKey('notice'))) {
         final _objects = (_body as List)
             .map((e) => Bobject.fromJson(e as Map<String, dynamic>))
             .toList();
         return right(_objects);
       } else {
+        if (_body['notice'] == 'Неверный токен') {
+          return left(const BobjectFailure.invalidToken());
+        }
         return left(BobjectFailure.badResponse(
           _body['notice'] != null
               ? _body['notice'].toString()
@@ -42,12 +46,16 @@ class ObjectRepository implements IObjectRepository {
     try {
       final _response = await http.post(sliderUrl);
       final _body = jsonDecode(_response.toString());
-      if (_response.statusCode == 200) {
+      if (_response.statusCode == 200 &&
+          !(_body is Map && _body.containsKey('notice'))) {
         final _sliders = (_body as List)
             .map((e) => Slider.fromJson(e as Map<String, dynamic>))
             .toList();
         return right(_sliders);
       } else {
+        if (_body['notice'] == 'Неверный токен') {
+          return left(const BobjectFailure.invalidToken());
+        }
         return left(BobjectFailure.badResponse(
           _body['notice'] != null
               ? _body['notice'].toString()
@@ -118,12 +126,16 @@ class ObjectRepository implements IObjectRepository {
         "object_id": objectId,
       });
       final _body = jsonDecode(_response.toString());
-      if (_response.statusCode == 200) {
+      if (_response.statusCode == 200 &&
+          !(_body is Map && _body.containsKey('notice'))) {
         final _requests = (_body as List)
             .map((e) => AgentRequest.fromJson(e as Map<String, dynamic>))
             .toList();
         return right(_requests);
       } else {
+        if (_body['notice'] == 'Неверный токен') {
+          return left(const BobjectFailure.invalidToken());
+        }
         return left(BobjectFailure.badResponse(
           _body['notice'] != null
               ? _body['notice'].toString()
