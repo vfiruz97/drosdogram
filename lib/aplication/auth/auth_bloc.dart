@@ -26,12 +26,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         yield _optionAuthToken.fold(
           () => const AuthState.unauthenticated(),
-          (_token) => AuthState.authenticated(token: _token),
+          (_authToken) => AuthState.authenticated(token: _authToken),
         );
       },
       signOut: (_) async* {
         await _authFacade.signOut();
         yield const AuthState.unauthenticated();
+      },
+      removeRegIsComplete: (_) async* {
+        final _optionAuthToken = await _authFacade.removeIsRegComplete();
+
+        yield _optionAuthToken.fold(
+          () => const AuthState.unauthenticated(),
+          (_authToken) => AuthState.authenticated(token: _authToken),
+        );
       },
     );
   }

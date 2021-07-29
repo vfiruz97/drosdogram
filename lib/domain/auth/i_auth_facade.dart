@@ -6,6 +6,7 @@ import 'package:drosdogram/domain/core/value_objects.dart';
 
 abstract class IAuthFacade {
   Future<Option<AuthToken>> getUserAuthToken();
+  Future<Option<AuthToken>> removeIsRegComplete();
   Future<Either<AuthFailure, AuthToken>> signIn({
     required Phone phone,
     required SmsCode smsCode,

@@ -11,6 +11,7 @@ import 'package:drosdogram/infrastructure/database/file_storage/file_storage.dar
 class AuthRepository {
   final FileStorage fileStorage;
   final String key = "auth-token";
+  final String isRegCompleteKey = "is-reg-complete";
   String? authToken;
 
   AuthRepository(
@@ -50,6 +51,31 @@ class AuthRepository {
       await fileStorage.removeRequest(key);
     } catch (e) {
       throw UnexpectedFileStorageError();
+    }
+  }
+
+  Future<String> getRegIsComplete() async {
+    try {
+      final String value = await fileStorage.getRequest(isRegCompleteKey);
+      return value;
+    } catch (e) {
+      return "1";
+    }
+  }
+
+  Future<void> setRegIsComplete(String value) async {
+    try {
+      await fileStorage.setRequest(isRegCompleteKey, value);
+    } catch (e) {
+      throw UnexpectedFileStorageError();
+    }
+  }
+
+  Future<void> removeRegIsComplete() async {
+    try {
+      await fileStorage.removeRequest(isRegCompleteKey);
+    } catch (e) {
+      //throw UnexpectedFileStorageError();
     }
   }
 

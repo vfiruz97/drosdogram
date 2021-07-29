@@ -207,10 +207,8 @@ class ObjectRepository implements IObjectRepository {
             ? "data:image/${p.extension(file).substring(1)};base64,${base64.encode(File(file).readAsBytesSync())}"
             : null,
       };
-      print(data);
       final _response = await http.post(chatUrl, data: data);
       final _body = jsonDecode(_response.toString());
-      print(_body);
       if (_response.statusCode == 200) {
         final _messages = (_body as List)
             .map((e) => Message.fromJson(e as Map<String, dynamic>))

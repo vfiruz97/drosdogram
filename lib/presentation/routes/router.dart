@@ -1,4 +1,5 @@
 import 'package:drosdogram/domain/auth/user.dart';
+import 'package:drosdogram/presentation/auth_screens/finish_register_screen/finish_register_screen.dart';
 import 'package:drosdogram/presentation/auth_screens/password_recovery/password_recovery_screen.dart';
 import 'package:drosdogram/presentation/auth_screens/register_screen/register_code_screen.dart';
 import 'package:drosdogram/presentation/auth_screens/register_screen/register_screen.dart';
@@ -25,6 +26,8 @@ class RouteGenerator {
             builder: (_) => RegisterCodeScreen(
                   user: (args != null && args is User) ? args : User.empty(),
                 ));
+      case '/register-finish':
+        return MaterialPageRoute(builder: (_) => const FinishRegisterScreen());
       case '/screen-navigation':
         return MaterialPageRoute(builder: (_) => const ScreenBottomNavigator());
       case '/sign-in':

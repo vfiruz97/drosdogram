@@ -20,6 +20,10 @@ class _$AuthEventTearOff {
     return const _CheckAuthToken();
   }
 
+  _RemoveRegIsComplete removeRegIsComplete() {
+    return const _RemoveRegIsComplete();
+  }
+
   _SignOut signOut() {
     return const _SignOut();
   }
@@ -33,12 +37,14 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkAuthToken,
+    required TResult Function() removeRegIsComplete,
     required TResult Function() signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkAuthToken,
+    TResult Function()? removeRegIsComplete,
     TResult Function()? signOut,
     required TResult orElse(),
   }) =>
@@ -46,12 +52,14 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CheckAuthToken value) checkAuthToken,
+    required TResult Function(_RemoveRegIsComplete value) removeRegIsComplete,
     required TResult Function(_SignOut value) signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CheckAuthToken value)? checkAuthToken,
+    TResult Function(_RemoveRegIsComplete value)? removeRegIsComplete,
     TResult Function(_SignOut value)? signOut,
     required TResult orElse(),
   }) =>
@@ -113,6 +121,7 @@ class _$_CheckAuthToken implements _CheckAuthToken {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkAuthToken,
+    required TResult Function() removeRegIsComplete,
     required TResult Function() signOut,
   }) {
     return checkAuthToken();
@@ -122,6 +131,7 @@ class _$_CheckAuthToken implements _CheckAuthToken {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkAuthToken,
+    TResult Function()? removeRegIsComplete,
     TResult Function()? signOut,
     required TResult orElse(),
   }) {
@@ -135,6 +145,7 @@ class _$_CheckAuthToken implements _CheckAuthToken {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CheckAuthToken value) checkAuthToken,
+    required TResult Function(_RemoveRegIsComplete value) removeRegIsComplete,
     required TResult Function(_SignOut value) signOut,
   }) {
     return checkAuthToken(this);
@@ -144,6 +155,7 @@ class _$_CheckAuthToken implements _CheckAuthToken {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CheckAuthToken value)? checkAuthToken,
+    TResult Function(_RemoveRegIsComplete value)? removeRegIsComplete,
     TResult Function(_SignOut value)? signOut,
     required TResult orElse(),
   }) {
@@ -156,6 +168,96 @@ class _$_CheckAuthToken implements _CheckAuthToken {
 
 abstract class _CheckAuthToken implements AuthEvent {
   const factory _CheckAuthToken() = _$_CheckAuthToken;
+}
+
+/// @nodoc
+abstract class _$RemoveRegIsCompleteCopyWith<$Res> {
+  factory _$RemoveRegIsCompleteCopyWith(_RemoveRegIsComplete value,
+          $Res Function(_RemoveRegIsComplete) then) =
+      __$RemoveRegIsCompleteCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RemoveRegIsCompleteCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements _$RemoveRegIsCompleteCopyWith<$Res> {
+  __$RemoveRegIsCompleteCopyWithImpl(
+      _RemoveRegIsComplete _value, $Res Function(_RemoveRegIsComplete) _then)
+      : super(_value, (v) => _then(v as _RemoveRegIsComplete));
+
+  @override
+  _RemoveRegIsComplete get _value => super._value as _RemoveRegIsComplete;
+}
+
+/// @nodoc
+
+class _$_RemoveRegIsComplete implements _RemoveRegIsComplete {
+  const _$_RemoveRegIsComplete();
+
+  @override
+  String toString() {
+    return 'AuthEvent.removeRegIsComplete()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _RemoveRegIsComplete);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkAuthToken,
+    required TResult Function() removeRegIsComplete,
+    required TResult Function() signOut,
+  }) {
+    return removeRegIsComplete();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkAuthToken,
+    TResult Function()? removeRegIsComplete,
+    TResult Function()? signOut,
+    required TResult orElse(),
+  }) {
+    if (removeRegIsComplete != null) {
+      return removeRegIsComplete();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CheckAuthToken value) checkAuthToken,
+    required TResult Function(_RemoveRegIsComplete value) removeRegIsComplete,
+    required TResult Function(_SignOut value) signOut,
+  }) {
+    return removeRegIsComplete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CheckAuthToken value)? checkAuthToken,
+    TResult Function(_RemoveRegIsComplete value)? removeRegIsComplete,
+    TResult Function(_SignOut value)? signOut,
+    required TResult orElse(),
+  }) {
+    if (removeRegIsComplete != null) {
+      return removeRegIsComplete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveRegIsComplete implements AuthEvent {
+  const factory _RemoveRegIsComplete() = _$_RemoveRegIsComplete;
 }
 
 /// @nodoc
@@ -196,6 +298,7 @@ class _$_SignOut implements _SignOut {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkAuthToken,
+    required TResult Function() removeRegIsComplete,
     required TResult Function() signOut,
   }) {
     return signOut();
@@ -205,6 +308,7 @@ class _$_SignOut implements _SignOut {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkAuthToken,
+    TResult Function()? removeRegIsComplete,
     TResult Function()? signOut,
     required TResult orElse(),
   }) {
@@ -218,6 +322,7 @@ class _$_SignOut implements _SignOut {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CheckAuthToken value) checkAuthToken,
+    required TResult Function(_RemoveRegIsComplete value) removeRegIsComplete,
     required TResult Function(_SignOut value) signOut,
   }) {
     return signOut(this);
@@ -227,6 +332,7 @@ class _$_SignOut implements _SignOut {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CheckAuthToken value)? checkAuthToken,
+    TResult Function(_RemoveRegIsComplete value)? removeRegIsComplete,
     TResult Function(_SignOut value)? signOut,
     required TResult orElse(),
   }) {

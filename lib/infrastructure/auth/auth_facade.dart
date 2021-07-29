@@ -21,7 +21,24 @@ class AuthFacade implements IAuthFacade {
   Future<Option<AuthToken>> getUserAuthToken() async {
     try {
       final String _token = await repo.getAuthToken();
-      final _authToken = AuthToken(_token);
+      final String _isRegComplete = await repo.getRegIsComplete();
+      final _authToken = AuthToken(_token, _isRegComplete);
+      if (_authToken.isValid()) {
+        return some(_authToken);
+      }
+      return none();
+    } catch (e) {
+      return none();
+    }
+  }
+
+  @override
+  Future<Option<AuthToken>> removeIsRegComplete() async {
+    try {
+      await repo.removeRegIsComplete();
+      final String _token = await repo.getAuthToken();
+      final String _isRegComplete = await repo.getRegIsComplete();
+      final _authToken = AuthToken(_token, _isRegComplete);
       if (_authToken.isValid()) {
         return some(_authToken);
       }
@@ -44,8 +61,10 @@ class AuthFacade implements IAuthFacade {
 
       if (response['success'] == true) {
         await repo.setAuthToken(response['token'].toString());
+        await repo.setRegIsComplete(response['is_complete'].toString());
         final _token = await repo.getAuthToken();
-        return right(AuthToken(_token));
+        final _isRegComplete = await repo.getRegIsComplete();
+        return right(AuthToken(_token, _isRegComplete));
       }
 
       return left(const AuthFailure.serverError());

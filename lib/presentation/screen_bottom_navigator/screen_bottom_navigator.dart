@@ -1,4 +1,3 @@
-import 'package:drosdogram/aplication/profile/profile_bloc.dart';
 import 'package:drosdogram/aplication/screen_bottom_navigator/screen_nav_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,21 +7,13 @@ import 'package:drosdogram/aplication/screen_bottom_navigator/bottom_nav_bloc.da
 import 'package:drosdogram/presentation/screen_bottom_navigator/widgets/bottom_nav_bar_widget.dart';
 import 'package:drosdogram/presentation/screen_bottom_navigator/widgets/bottom_nav_body_widget.dart';
 
-import '../../injection.dart';
-
 class ScreenBottomNavigator extends StatelessWidget {
   const ScreenBottomNavigator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-            lazy: false,
-            create: (context) =>
-                getIt<ProfileBloc>()..add(const ProfileEvent.getUserInfo())),
-        BlocProvider(create: (context) => BottomNavBloc()),
-      ],
+    return BlocProvider(
+      create: (context) => BottomNavBloc(),
       child: Scaffold(
         body: const SafeArea(child: BottomNavBodyWidget()),
         floatingActionButton: BlocBuilder<BottomNavBloc, BottomNavState>(

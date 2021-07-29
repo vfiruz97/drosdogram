@@ -6,12 +6,13 @@ import 'package:drosdogram/domain/core/value_validators.dart';
 class AuthToken extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
+  final String isComplete;
 
-  factory AuthToken(String value) {
-    return AuthToken._(validateAuthToken(value));
+  factory AuthToken(String value, String isComplete) {
+    return AuthToken._(validateAuthToken(value), isComplete);
   }
 
-  const AuthToken._(this.value);
+  const AuthToken._(this.value, this.isComplete);
 }
 
 class SmsCode extends ValueObject<String> {

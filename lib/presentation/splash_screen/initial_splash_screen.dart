@@ -1,4 +1,5 @@
 import 'package:drosdogram/aplication/auth/auth_bloc.dart';
+import 'package:drosdogram/aplication/profile/profile_bloc.dart';
 import 'package:drosdogram/infrastructure/http_client/http_client.dart';
 import 'package:drosdogram/presentation/splash_screen/load_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,13 @@ class InitialSplashScreen extends StatelessWidget {
           },
           authenticated: (s) {
             if (s.token.isValid()) http.token = s.token.getOrCrash();
-            Navigator.pushNamed(context, '/screen-navigation');
+            BlocProvider.of<ProfileBloc>(context)
+                .add(const ProfileEvent.getUserInfo());
+            if (s.token.isComplete == "0") {
+              Navigator.pushNamed(context, '/register-finish');
+            } else {
+              Navigator.pushNamed(context, '/screen-navigation');
+            }
           },
         );
       },
