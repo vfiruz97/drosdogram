@@ -140,8 +140,9 @@ class BodyWidget extends StatelessWidget {
                       const SizedBox(height: 25),
                       YellowButtonWidget(
                         label: "Вперёд",
-                        isDisable:
-                            !(state.phone.isValid() && state.smsCode.isValid()),
+                        isDisable: !(state.phone.isValid() &&
+                                state.smsCode.isValid()) ||
+                            state.isSubmiting,
                         onTap: () => context
                             .read<SignInFormBloc>()
                             .add(const SignInFormEvent.submitSignIn()),

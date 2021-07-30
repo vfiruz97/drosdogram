@@ -125,33 +125,39 @@ class ProfileScreen extends StatelessWidget {
                           const SizedBox(height: 15),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               const Text(
                                 "Не нашли своего? ",
+                                overflow: TextOverflow.ellipsis,
                                 style: Style.underlinedTextStyle,
                               ),
-                              TextUnderlinedButtonWidget(
-                                label: 'Зарегистрировать агенство',
-                                onTap: () async {
-                                  final _res = await AgencyCreateFormWidget
-                                      .showAgencyDialog(context);
-                                  if (_res != null && _res is Agency) {
-                                    BlocProvider.of<ProfileBloc>(context)
-                                        .add(ProfileEvent.addNewAgency(_res));
-                                    _agencyC.text = _res.name.getOrCrash();
-                                    Flushbar(
-                                      message: 'Запись добавлена',
-                                      icon: Icon(
-                                        Icons.check,
-                                        size: 28.0,
-                                        color: Colors.green[300],
-                                      ),
-                                      duration: const Duration(seconds: 3),
-                                      leftBarIndicatorColor: Colors.green[300],
-                                    ).show(context);
-                                  }
-                                },
-                                color: Colors.black,
+                              Expanded(
+                                child: TextUnderlinedButtonWidget(
+                                  label: 'Зарегистрировать агенство',
+                                  isAlignRight: true,
+                                  onTap: () async {
+                                    final _res = await AgencyCreateFormWidget
+                                        .showAgencyDialog(context);
+                                    if (_res != null && _res is Agency) {
+                                      BlocProvider.of<ProfileBloc>(context)
+                                          .add(ProfileEvent.addNewAgency(_res));
+                                      _agencyC.text = _res.name.getOrCrash();
+                                      Flushbar(
+                                        message: 'Запись добавлена',
+                                        icon: Icon(
+                                          Icons.check,
+                                          size: 28.0,
+                                          color: Colors.green[300],
+                                        ),
+                                        duration: const Duration(seconds: 3),
+                                        leftBarIndicatorColor:
+                                            Colors.green[300],
+                                      ).show(context);
+                                    }
+                                  },
+                                  color: Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -227,7 +233,7 @@ class ProfileScreen extends StatelessWidget {
                           const SizedBox(height: 25),
                           YellowButtonWidget(
                             label: "Сохранить",
-                            isDisable: false,
+                            isDisable: state.isSubmitting,
                             onTap: () => context
                                 .read<ProfileBloc>()
                                 .add(const ProfileEvent.editUserInfo()),

@@ -108,7 +108,8 @@ class RegisterCodeScreen extends StatelessWidget {
                         const SizedBox(height: 25),
                         YellowButtonWidget(
                           label: "Вперёд",
-                          isDisable: !state.user.smsCode.isValid(),
+                          isDisable: !state.user.smsCode.isValid() ||
+                              state.isSubmitting,
                           onTap: () => context.read<RegisterBloc>().add(
                               const RegisterEvent.submitSecondStepPressed()),
                           width: double.infinity,
@@ -123,7 +124,8 @@ class RegisterCodeScreen extends StatelessWidget {
                         const SizedBox(height: 25),
                         TextUnderlinedButtonWidget(
                           label: 'У меня уже есть профиль',
-                          onTap: () => Navigator.pushReplacementNamed(context, '/sign-in'),
+                          onTap: () => Navigator.pushReplacementNamed(
+                              context, '/sign-in'),
                         ),
                       ],
                     ),

@@ -11,7 +11,7 @@ class NoteBottomCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 169,
+      height: 170,
       color: backgroundColor,
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -23,9 +23,11 @@ class NoteBottomCardWidget extends StatelessWidget {
             style: Style.bottomNoteCardFirstStyle,
           ),
           SizedBox(height: 15),
-          Text(
-            "Наши продажники общаются только внутри\nвашей сделки через SIP телефонию",
-            style: Style.bottomNoteCardSecondStyle,
+          Expanded(
+            child: Text(
+              "Наши продажники общаются только внутри\nвашей сделки через SIP телефонию",
+              style: Style.bottomNoteCardSecondStyle,
+            ),
           ),
         ],
       ),

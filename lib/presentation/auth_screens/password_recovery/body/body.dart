@@ -40,9 +40,8 @@ class PasswordRecoveyBodyWidget extends StatelessWidget {
             (_) {
               FlushbarHelper.createSuccess(
                 message: "На ваш номер телефона выслан новый пароль",
-              )
-                  .show(context)
-                  .then((_) => Navigator.pushReplacementNamed(context, '/sign-in'));
+              ).show(context).then(
+                  (_) => Navigator.pushReplacementNamed(context, '/sign-in'));
             },
           ),
         );
@@ -105,7 +104,7 @@ class PasswordRecoveyBodyWidget extends StatelessWidget {
                     const SizedBox(height: 25),
                     YellowButtonWidget(
                       label: "Вперёд",
-                      isDisable: !state.phone.isValid(),
+                      isDisable: !state.phone.isValid() || state.isSubmitting,
                       onTap: () => context
                           .read<PasswordRecoveryBloc>()
                           .add(const PasswordRecoveryEvent.submitSmsCode()),
@@ -121,13 +120,14 @@ class PasswordRecoveyBodyWidget extends StatelessWidget {
                     const SizedBox(height: 25),
                     TextUnderlinedButtonWidget(
                       label: 'Зарегистрироваться',
-                      onTap: () =>
-                          Navigator.pushReplacementNamed(context, '/register-first'),
+                      onTap: () => Navigator.pushReplacementNamed(
+                          context, '/register-first'),
                     ),
                     const SizedBox(height: 25),
                     TextUnderlinedButtonWidget(
                       label: 'У меня уже есть профиль',
-                      onTap: () => Navigator.pushReplacementNamed(context, '/sign-in'),
+                      onTap: () =>
+                          Navigator.pushReplacementNamed(context, '/sign-in'),
                     ),
                   ],
                 ),

@@ -198,7 +198,7 @@ class CreateOrderFormScreen extends StatelessWidget {
                               Expanded(
                                 child: YellowButtonWidget(
                                   label: "Отправить",
-                                  isDisable: false,
+                                  isDisable: state.isSubmitting,
                                   onTap: () => context
                                       .read<OrderFormBloc>()
                                       .add(const OrderFormEvent.submit()),

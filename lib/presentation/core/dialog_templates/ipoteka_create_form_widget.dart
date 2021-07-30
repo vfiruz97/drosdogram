@@ -68,149 +68,152 @@ class IpotekaCreateFormWidget extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.transparent,
             body: SafeArea(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-                child: Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 25,
-                      ),
-                      decoration: Style.dialogFirstDecoration,
-                      child: Form(
-                        autovalidateMode: state.showErrorMessage
-                            ? AutovalidateMode.always
-                            : AutovalidateMode.disabled,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const FirstTitleWidget(title: "Заявка на ипотеку"),
-                            const SizedBox(height: 25),
-                            TextFormField(
-                              initialValue: state.hypothec.name.isValid()
-                                  ? state.hypothec.name.getOrCrash()
-                                  : null,
-                              onChanged: (value) => context
-                                  .read<HypothecBloc>()
-                                  .add(HypothecEvent.changeName(value)),
-                              validator: (_) => context
-                                  .read<HypothecBloc>()
-                                  .state
-                                  .hypothec
-                                  .name
-                                  .value
-                                  .fold(
-                                    (f) => f.maybeMap(
-                                      strShortLength: (_) =>
-                                          'ФИО очень коротко',
-                                      orElse: () => null,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 25,
+                        ),
+                        decoration: Style.dialogFirstDecoration,
+                        child: Form(
+                          autovalidateMode: state.showErrorMessage
+                              ? AutovalidateMode.always
+                              : AutovalidateMode.disabled,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const FirstTitleWidget(
+                                  title: "Заявка на ипотеку"),
+                              const SizedBox(height: 25),
+                              TextFormField(
+                                initialValue: state.hypothec.name.isValid()
+                                    ? state.hypothec.name.getOrCrash()
+                                    : null,
+                                onChanged: (value) => context
+                                    .read<HypothecBloc>()
+                                    .add(HypothecEvent.changeName(value)),
+                                validator: (_) => context
+                                    .read<HypothecBloc>()
+                                    .state
+                                    .hypothec
+                                    .name
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                        strShortLength: (_) =>
+                                            'ФИО очень коротко',
+                                        orElse: () => null,
+                                      ),
+                                      (_) => null,
                                     ),
-                                    (_) => null,
-                                  ),
-                              autocorrect: false,
-                              style: Style.textFieldFirstStyle,
-                              decoration: Style.splashScreenFirstDecorations(
-                                  hintText: 'ФИО (клиента)*'),
-                            ),
-                            const SizedBox(height: 20),
-                            TextFormField(
-                              initialValue: state.hypothec.phone.isValid()
-                                  ? state.hypothec.phone.getOrCrash()
-                                  : null,
-                              onChanged: (value) => context
-                                  .read<HypothecBloc>()
-                                  .add(HypothecEvent.changePhone(
-                                      "7${maskPhoneFormatter.getUnmaskedText()}")),
-                              validator: (_) => context
-                                  .read<HypothecBloc>()
-                                  .state
-                                  .hypothec
-                                  .phone
-                                  .value
-                                  .fold(
-                                    (f) => f.maybeMap(
-                                      invalidPhone: (_) =>
-                                          'Неверный номер телефона',
-                                      orElse: () => null,
+                                autocorrect: false,
+                                style: Style.textFieldFirstStyle,
+                                decoration: Style.splashScreenFirstDecorations(
+                                    hintText: 'ФИО (клиента)*'),
+                              ),
+                              const SizedBox(height: 20),
+                              TextFormField(
+                                initialValue: state.hypothec.phone.isValid()
+                                    ? state.hypothec.phone.getOrCrash()
+                                    : null,
+                                onChanged: (value) => context
+                                    .read<HypothecBloc>()
+                                    .add(HypothecEvent.changePhone(
+                                        "7${maskPhoneFormatter.getUnmaskedText()}")),
+                                validator: (_) => context
+                                    .read<HypothecBloc>()
+                                    .state
+                                    .hypothec
+                                    .phone
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                        invalidPhone: (_) =>
+                                            'Неверный номер телефона',
+                                        orElse: () => null,
+                                      ),
+                                      (_) => null,
                                     ),
-                                    (_) => null,
+                                autocorrect: false,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  maskPhoneFormatter,
+                                ],
+                                style: Style.textFieldFirstStyle,
+                                decoration: Style.splashScreenFirstDecorations(
+                                    hintText: 'Телефон (клиента)*'),
+                              ),
+                              const SizedBox(height: 20),
+                              TextFormField(
+                                initialValue: state.hypothec.request.isValid()
+                                    ? state.hypothec.request.getOrCrash()
+                                    : null,
+                                onChanged: (value) => context
+                                    .read<HypothecBloc>()
+                                    .add(HypothecEvent.changeRequest(value)),
+                                validator: (_) => context
+                                    .read<HypothecBloc>()
+                                    .state
+                                    .hypothec
+                                    .request
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                        strShortLength: (_) =>
+                                            'Запрос очень короткий',
+                                        orElse: () => null,
+                                      ),
+                                      (_) => null,
+                                    ),
+                                autocorrect: false,
+                                keyboardType: TextInputType.multiline,
+                                minLines: 6,
+                                maxLines: 10,
+                                style: Style.textFieldFirstStyle,
+                                decoration: Style.splashScreenFirstDecorations(
+                                    hintText: 'Запрос (клиента)*'),
+                              ),
+                              const SizedBox(height: 25),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: CancelButtonWidget(
+                                      isDisable: state.isSubmitting,
+                                      onTap: () => Navigator.pop(context),
+                                    ),
                                   ),
-                              autocorrect: false,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                maskPhoneFormatter,
+                                  const SizedBox(width: 15),
+                                  Expanded(
+                                    child: YellowButtonWidget(
+                                      label: "Отправить",
+                                      isDisable: state.isSubmitting,
+                                      onTap: () => context
+                                          .read<HypothecBloc>()
+                                          .add(const HypothecEvent.submit()),
+                                      width: MediaQuery.of(context).size.width,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              if (state.isSubmitting) ...[
+                                const SizedBox(height: 8),
+                                const LinearProgressIndicator(
+                                  color: Colors.yellow,
+                                  backgroundColor: Colors.white,
+                                )
                               ],
-                              style: Style.textFieldFirstStyle,
-                              decoration: Style.splashScreenFirstDecorations(
-                                  hintText: 'Телефон (клиента)*'),
-                            ),
-                            const SizedBox(height: 20),
-                            TextFormField(
-                              initialValue: state.hypothec.request.isValid()
-                                  ? state.hypothec.request.getOrCrash()
-                                  : null,
-                              onChanged: (value) => context
-                                  .read<HypothecBloc>()
-                                  .add(HypothecEvent.changeRequest(value)),
-                              validator: (_) => context
-                                  .read<HypothecBloc>()
-                                  .state
-                                  .hypothec
-                                  .request
-                                  .value
-                                  .fold(
-                                    (f) => f.maybeMap(
-                                      strShortLength: (_) =>
-                                          'Запрос очень короткий',
-                                      orElse: () => null,
-                                    ),
-                                    (_) => null,
-                                  ),
-                              autocorrect: false,
-                              keyboardType: TextInputType.multiline,
-                              minLines: 6,
-                              maxLines: 10,
-                              style: Style.textFieldFirstStyle,
-                              decoration: Style.splashScreenFirstDecorations(
-                                  hintText: 'Запрос (клиента)*'),
-                            ),
-                            const SizedBox(height: 25),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: CancelButtonWidget(
-                                    isDisable: state.isSubmitting,
-                                    onTap: () => Navigator.pop(context),
-                                  ),
-                                ),
-                                const SizedBox(width: 15),
-                                Expanded(
-                                  child: YellowButtonWidget(
-                                    label: "Отправить",
-                                    isDisable: false,
-                                    onTap: () => context
-                                        .read<HypothecBloc>()
-                                        .add(const HypothecEvent.submit()),
-                                    width: MediaQuery.of(context).size.width,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            if (state.isSubmitting) ...[
-                              const SizedBox(height: 8),
-                              const LinearProgressIndicator(
-                                color: Colors.yellow,
-                                backgroundColor: Colors.white,
-                              )
                             ],
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

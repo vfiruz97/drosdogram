@@ -18,7 +18,8 @@ class ScreenBottomNavigator extends StatelessWidget {
         body: const SafeArea(child: BottomNavBodyWidget()),
         floatingActionButton: BlocBuilder<BottomNavBloc, BottomNavState>(
           builder: (context, state) {
-            if (state.curScr is RequestChatScr) {
+            if (state.curScr is RequestChatScr ||
+                state.curScr is HomeOrderFormScr) {
               return const SizedBox();
             }
             return FloatingActionButton(

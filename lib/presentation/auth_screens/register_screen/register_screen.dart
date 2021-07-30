@@ -148,7 +148,8 @@ class RegisterScreen extends StatelessWidget {
                           YellowButtonWidget(
                             label: "Вперёд",
                             isDisable: !(state.user.name.isValid() &&
-                                state.user.phone.isValid()),
+                                    state.user.phone.isValid()) ||
+                                state.isSubmitting,
                             onTap: () {
                               context.read<RegisterBloc>().add(
                                   const RegisterEvent.submitFirstPressed());
@@ -165,8 +166,8 @@ class RegisterScreen extends StatelessWidget {
                           const SizedBox(height: 25),
                           TextUnderlinedButtonWidget(
                             label: 'У меня уже есть профиль',
-                            onTap: () =>
-                                Navigator.pushReplacementNamed(context, '/sign-in'),
+                            onTap: () => Navigator.pushReplacementNamed(
+                                context, '/sign-in'),
                           ),
                         ],
                       ),

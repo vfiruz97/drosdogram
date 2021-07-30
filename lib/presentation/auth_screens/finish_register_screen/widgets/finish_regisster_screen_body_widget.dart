@@ -231,7 +231,7 @@ class FinishRegisterScreenBodyWidget extends StatelessWidget {
                           const SizedBox(height: 25),
                           YellowButtonWidget(
                             label: "Сохранить",
-                            isDisable: false,
+                            isDisable: state.isSubmitting,
                             onTap: () => context
                                 .read<ProfileBloc>()
                                 .add(const ProfileEvent.editUserInfo()),
