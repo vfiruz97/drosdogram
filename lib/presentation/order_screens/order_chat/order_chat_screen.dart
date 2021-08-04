@@ -52,6 +52,13 @@ class OrderChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (request.count != "") {
+      Future.delayed(const Duration(microseconds: 700), () {
+        BlocProvider.of<AgentRequestBloc>(context)
+            .add(const AgentRequestEvent.getAgentRequests());
+      });
+    }
+
     final ScrollController _scrollController = ScrollController();
     final messageCtrl = TextEditingController();
 
@@ -111,8 +118,12 @@ class OrderChatScreen extends StatelessWidget {
             children: [
               AppBarWidget(
                 title: request.clientName,
-                onTapBackIcon: () => BlocProvider.of<BottomNavBloc>(context)
-                    .add(const BottomNavEvent.changeTo(scr: RequestScr())),
+                onTapBackIcon: () {
+                  BlocProvider.of<AgentRequestBloc>(context)
+                      .add(const AgentRequestEvent.getAgentRequests());
+                  BlocProvider.of<BottomNavBloc>(context)
+                      .add(const BottomNavEvent.changeTo(scr: RequestScr()));
+                },
               ),
               Expanded(
                 child: SingleChildScrollView(
@@ -179,10 +190,13 @@ class OrderChatScreen extends StatelessWidget {
                           const ChatPickedImageWidget(),
                           const SizedBox(width: 4),
                           InkWell(
-                            onTap: () =>
-                                BlocProvider.of<ChatMessageBloc>(context).add(
-                                    ChatMessageEvent.sendMessage(
-                                        requestId: request.id)),
+                            onTap: () {
+                              BlocProvider.of<ChatMessageBloc>(context).add(
+                                  ChatMessageEvent.sendMessage(
+                                      requestId: request.id));
+                              BlocProvider.of<AgentRequestBloc>(context).add(
+                                  const AgentRequestEvent.getAgentRequests());
+                            },
                             child: state.isSubmitting
                                 ? Container(
                                     width: 24,

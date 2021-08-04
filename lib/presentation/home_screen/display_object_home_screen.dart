@@ -8,7 +8,6 @@ import 'package:drosdogram/presentation/core/dialog_templates/ipoteka_create_for
 import 'package:drosdogram/presentation/core/widgets/address_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/app_bar_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/first_title_widget.dart';
-import 'package:drosdogram/presentation/core/widgets/note_bottom_card_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/outline_button_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/yellow_button_widget.dart';
 import 'package:drosdogram/presentation/home_screen/widgets/double_photo_card_widget.dart';
@@ -35,7 +34,7 @@ class DisplayObjectHomeScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(
                 top: 86,
-                bottom: 189,
+                bottom: 9,
                 left: 24,
                 right: 24,
               ),
@@ -116,15 +115,6 @@ class DisplayObjectHomeScreen extends StatelessWidget {
                 title: object.name,
                 onTapBackIcon: () => BlocProvider.of<BottomNavBloc>(context)
                     .add(const BottomNavEvent.changeTo(scr: HomeScr())),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: SizedBox(
-              width: Config.getScreenWidth(context),
-              child: const NoteBottomCardWidget(
-                backgroundColor: Color.fromRGBO(242, 242, 242, 1),
               ),
             ),
           ),

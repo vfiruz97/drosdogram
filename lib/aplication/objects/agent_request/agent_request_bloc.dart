@@ -49,6 +49,7 @@ class AgentRequestBloc extends Bloc<AgentRequestEvent, AgentRequestState> {
             objectId: state.selectedObjectId);
         yield _res.fold(
           (failure) => state.copyWith(
+            requests: [],
             isGetting: false,
             failureOrOption: some(left(failure)),
           ),
@@ -69,6 +70,7 @@ class AgentRequestBloc extends Bloc<AgentRequestEvent, AgentRequestState> {
         final _res = await _repository.getAgentRequests(objectId: e.objectId);
         yield _res.fold(
           (failure) => state.copyWith(
+            requests: [],
             isGetting: false,
             failureOrOption: some(left(failure)),
           ),

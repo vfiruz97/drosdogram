@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:drosdogram/presentation/core/styles/style.dart';
+import 'package:drosdogram/presentation/core/widgets/photo_view_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/play_audio_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -49,11 +50,15 @@ class FirstMessageBubbleWidget extends StatelessWidget {
                     if (message.message.isNotEmpty)
                       Text(message.message, style: Style.chatBubbleFirstStyle),
                     if (message.image.isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: CachedNetworkImage(
-                          imageUrl: message.image,
-                          fit: BoxFit.fill,
+                      InkWell(
+                        onTap: () =>
+                            PhotoViewWidget.show(context, url: message.image),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: CachedNetworkImage(
+                            imageUrl: message.image,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     if (message.isCall == "1")

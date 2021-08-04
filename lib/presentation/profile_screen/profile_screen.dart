@@ -1,6 +1,8 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:drosdogram/aplication/auth/auth_bloc.dart';
 import 'package:drosdogram/aplication/profile/profile_bloc.dart';
+import 'package:drosdogram/aplication/screen_bottom_navigator/bottom_nav_bloc.dart';
+import 'package:drosdogram/aplication/screen_bottom_navigator/screen_nav_list.dart';
 import 'package:drosdogram/domain/profile/agency.dart';
 import 'package:drosdogram/presentation/core/dialog_templates/agency_create_form_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/app_bar_widget.dart';
@@ -68,7 +70,8 @@ class ProfileScreen extends StatelessWidget {
                   title: _user.isComplete == 0
                       ? 'Завершение регистрации'
                       : 'Профиль',
-                  onTapBackIcon: () => Navigator.pop(context),
+                  onTapBackIcon: () => BlocProvider.of<BottomNavBloc>(context)
+                      .add(const BottomNavEvent.changeTo(scr: HomeScr())),
                 ),
                 const SizedBox(height: 6),
                 Padding(

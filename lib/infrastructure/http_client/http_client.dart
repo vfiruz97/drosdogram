@@ -45,6 +45,7 @@ class HttpClient {
       dio.options.headers['Authorization'] = _authToken;
       final Response _response = await dio.post(url, data: data);
       print("token:-: $_authToken | $url\n${DateTime.now().toString()}");
+      print(data);
       print(_response);
       return _response;
     } catch (e) {
