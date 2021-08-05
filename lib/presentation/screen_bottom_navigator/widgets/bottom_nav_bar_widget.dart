@@ -14,7 +14,7 @@ class BottomNavBarWidget extends StatelessWidget {
     return BlocBuilder<BottomNavBloc, BottomNavState>(
       builder: (context, state) {
         return Container(
-          height: 65,
+          height: 75,
           padding: const EdgeInsets.only(bottom: 15),
           decoration: const BoxDecoration(
             color: Color.fromRGBO(255, 255, 255, 1),
@@ -81,6 +81,7 @@ InkWell createNavigationItem({
           : const BoxDecoration(),
       child: SvgPicture.asset(
         "assets/images/$iconImage.svg",
+        height: 35,
         color: index == curIndex
             ? const Color.fromRGBO(255, 213, 0, 1)
             : const Color.fromRGBO(0, 0, 0, 0.5),

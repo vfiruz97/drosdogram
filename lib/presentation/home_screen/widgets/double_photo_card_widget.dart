@@ -16,27 +16,29 @@ class DoublePhotoCardWidget extends StatelessWidget {
     final List<Widget> _sliders = [];
     int index = 0;
 
-    String _im1 = '';
-    String _im2 = '';
+    int _im1Index = 0;
+    int _im2Index = 0;
 
     for (var i = 0; i < imageCount / 2; i++) {
-      _im1 = images[index];
-      if ((index + 1) < imageCount) _im2 = images[index + 1];
+      _im1Index = index;
+      if ((index + 1) < imageCount) _im2Index = index + 1;
       _sliders.add(
         Row(
           children: [
             if (index < imageCount)
               Expanded(
                 child: InkWell(
-                  onTap: () {
-                    PhotoViewWidget.show(context, url: _im1);
-                  },
+                  onTap: () => GalleryPhotoiewWidget.show(
+                    context,
+                    images: images,
+                    initialIndex: _im1Index,
+                  ),
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 7, right: 3.5),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: CachedNetworkImage(
-                        imageUrl: _im1,
+                        imageUrl: images[index],
                         height: 140,
                         fit: BoxFit.fill,
                       ),
@@ -47,15 +49,17 @@ class DoublePhotoCardWidget extends StatelessWidget {
             Expanded(
               child: ((index + 1) < imageCount)
                   ? InkWell(
-                      onTap: () {
-                        PhotoViewWidget.show(context, url: _im2);
-                      },
+                      onTap: () => GalleryPhotoiewWidget.show(
+                        context,
+                        images: images,
+                        initialIndex: _im2Index,
+                      ),
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 7, left: 3.5),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: CachedNetworkImage(
-                            imageUrl: _im2,
+                            imageUrl: images[index + 1],
                             height: 140,
                             fit: BoxFit.fill,
                           ),
