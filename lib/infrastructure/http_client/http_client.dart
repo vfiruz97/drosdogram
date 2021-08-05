@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:drosdogram/domain/core/errors.dart';
 import 'package:drosdogram/injection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 // url
@@ -44,12 +45,12 @@ class HttpClient {
     try {
       dio.options.headers['Authorization'] = _authToken;
       final Response _response = await dio.post(url, data: data);
-      print("token:-: $_authToken | $url\n${DateTime.now().toString()}");
-      print(data);
-      print(_response);
+      debugPrint("token:-: $_authToken | $url\n${DateTime.now().toString()}");
+      debugPrint(data.toString());
+      debugPrint(_response.toString());
       return _response;
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       throw NetworkError();
     }
   }
@@ -85,7 +86,7 @@ class HttpClient {
 
   void printWrapped(String text) {
     final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
-    pattern.allMatches(text).forEach((match) => print(match.group(0)));
+    pattern.allMatches(text).forEach((match) => debugPrint(match.group(0)));
   }
 }
 

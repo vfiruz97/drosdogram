@@ -190,13 +190,23 @@ class OrderChatScreen extends StatelessWidget {
                           const ChatPickedImageWidget(),
                           const SizedBox(width: 4),
                           InkWell(
-                            onTap: () {
-                              BlocProvider.of<ChatMessageBloc>(context).add(
-                                  ChatMessageEvent.sendMessage(
-                                      requestId: request.id));
-                              BlocProvider.of<AgentRequestBloc>(context).add(
-                                  const AgentRequestEvent.getAgentRequests());
-                            },
+                            onTap: () async => Future.delayed(
+                              Duration.zero,
+                              () {
+                                BlocProvider.of<ChatMessageBloc>(context).add(
+                                    ChatMessageEvent.sendMessage(
+                                        requestId: request.id));
+                              },
+                            ).then((_) {
+                              Future.delayed(
+                                const Duration(milliseconds: 300),
+                                () {
+                                  BlocProvider.of<AgentRequestBloc>(context)
+                                      .add(const AgentRequestEvent
+                                          .getAgentRequests());
+                                },
+                              );
+                            }),
                             child: state.isSubmitting
                                 ? Container(
                                     width: 24,

@@ -83,8 +83,6 @@ class AuthRepository {
     try {
       final _bytes = utf8.encode("$phone:$smsCode");
       final _token = base64.encode(_bytes);
-      //String _token = "KzcgKDkyMSkgMDA3LTMxLTc4OjkzMTI3NTM1";
-      print(_token);
       http.token = _token;
 
       final Response response = await http.post(authUrl);
