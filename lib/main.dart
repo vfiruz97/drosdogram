@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'aplication/auth/auth_bloc.dart';
 import 'aplication/auth/register/register_bloc.dart';
 import 'aplication/profile/profile_bloc.dart';
+import 'aplication/screen_bottom_navigator/bottom_nav_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(lazy: false, create: (context) => getIt<ProfileBloc>()),
         BlocProvider(create: (context) => getIt<RegisterBloc>()),
+        BlocProvider(create: (context) => BottomNavBloc()),
       ],
       child: MaterialApp(
         title: 'Drosdogram',

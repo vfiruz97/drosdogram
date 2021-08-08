@@ -1,3 +1,5 @@
+import 'package:drosdogram/aplication/screen_bottom_navigator/bottom_nav_bloc.dart';
+import 'package:drosdogram/aplication/screen_bottom_navigator/screen_nav_list.dart';
 import 'package:drosdogram/domain/auth/user.dart';
 import 'package:drosdogram/presentation/auth_screens/finish_register_screen/finish_register_screen.dart';
 import 'package:drosdogram/presentation/auth_screens/password_recovery/password_recovery_screen.dart';
@@ -8,6 +10,7 @@ import 'package:drosdogram/presentation/screen_bottom_navigator/screen_bottom_na
 import 'package:drosdogram/presentation/splash_screen/initial_splash_screen.dart';
 import 'package:drosdogram/presentation/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -29,7 +32,33 @@ class RouteGenerator {
       case '/register-finish':
         return MaterialPageRoute(builder: (_) => const FinishRegisterScreen());
       case '/screen-navigation':
-        return MaterialPageRoute(builder: (_) => const ScreenBottomNavigator());
+        return MaterialPageRoute(
+            builder: (context) => WillPopScope(
+                onWillPop: () async {
+                  final NavScreen _backScreen;
+                  switch (
+                      BlocProvider.of<BottomNavBloc>(context).state.preScr) {
+                    case HomeDisplayObjectScr():
+                      _backScreen = const HomeScr();
+                      break;
+                    case HomeOrderFormScr():
+                      _backScreen = const HomeScr();
+                      break;
+                    case RequestChatScr():
+                      _backScreen = const RequestScr();
+                      break;
+                    default:
+                      _backScreen = BlocProvider.of<BottomNavBloc>(context)
+                              .state
+                              .preScr ??
+                          const HomeScr();
+                  }
+                  BlocProvider.of<BottomNavBloc>(context).add(
+                    BottomNavEvent.changeTo(scr: _backScreen),
+                  );
+                  return false;
+                },
+                child: const ScreenBottomNavigator()));
       case '/sign-in':
         return MaterialPageRoute(builder: (_) => const SignInScreen());
       case '/password-recovery':

@@ -12,26 +12,23 @@ class ScreenBottomNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BottomNavBloc(),
-      child: Scaffold(
-        body: const SafeArea(child: BottomNavBodyWidget()),
-        floatingActionButton: BlocBuilder<BottomNavBloc, BottomNavState>(
-          builder: (context, state) {
-            if (state.curScr is RequestChatScr ||
-                state.curScr is HomeOrderFormScr) {
-              return const SizedBox();
-            }
-            return FloatingActionButton(
-              onPressed: () => BlocProvider.of<BottomNavBloc>(context)
-                  .add(const BottomNavEvent.changeTo(scr: FaqScr())),
-              backgroundColor: const Color.fromRGBO(255, 213, 0, 1),
-              child: SvgPicture.asset("assets/images/support.svg"),
-            );
-          },
-        ),
-        bottomNavigationBar: const BottomNavBarWidget(),
+    return Scaffold(
+      body: const SafeArea(child: BottomNavBodyWidget()),
+      floatingActionButton: BlocBuilder<BottomNavBloc, BottomNavState>(
+        builder: (context, state) {
+          if (state.curScr is RequestChatScr ||
+              state.curScr is HomeOrderFormScr) {
+            return const SizedBox();
+          }
+          return FloatingActionButton(
+            onPressed: () => BlocProvider.of<BottomNavBloc>(context)
+                .add(const BottomNavEvent.changeTo(scr: FaqScr())),
+            backgroundColor: const Color.fromRGBO(255, 213, 0, 1),
+            child: SvgPicture.asset("assets/images/support.svg"),
+          );
+        },
       ),
+      bottomNavigationBar: const BottomNavBarWidget(),
     );
   }
 }
