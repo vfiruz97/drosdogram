@@ -14,6 +14,7 @@ import 'package:drosdogram/presentation/home_screen/widgets/double_photo_card_wi
 import 'package:drosdogram/presentation/home_screen/widgets/single_photo_card_widget.dart';
 import 'package:drosdogram/presentation/home_screen/widgets/status_info_card_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DisplayObjectHomeScreen extends StatelessWidget {
   const DisplayObjectHomeScreen({
@@ -100,7 +101,13 @@ class DisplayObjectHomeScreen extends StatelessWidget {
                   const SizedBox(height: 15),
                   OutlineButtonWidget(
                     label: 'Информация о комплексе',
-                    onTap: () {},
+                    onTap: () async {
+                      try {
+                        if (Uri.parse(object.link).isAbsolute) {
+                          await launch(object.link);
+                        }
+                      } catch (_) {}
+                    },
                     width: double.infinity,
                   ),
                 ],

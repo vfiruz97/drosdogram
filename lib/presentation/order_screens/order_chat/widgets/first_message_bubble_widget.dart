@@ -51,8 +51,9 @@ class FirstMessageBubbleWidget extends StatelessWidget {
                       Text(message.message, style: Style.chatBubbleFirstStyle),
                     if (message.image.isNotEmpty)
                       InkWell(
-                        onTap: () =>
-                            PhotoViewWidget.show(context, url: message.image),
+                        onTap: () => message.image.isNotEmpty
+                            ? PhotoViewWidget.show(context, url: message.image)
+                            : null,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: CachedNetworkImage(

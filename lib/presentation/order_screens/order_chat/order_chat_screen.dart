@@ -7,7 +7,10 @@ import 'package:drosdogram/injection.dart';
 import 'package:drosdogram/presentation/core/widgets/object_widgets.dart';
 import 'package:drosdogram/presentation/order_screens/order_chat/widgets/body_chat_widget.dart';
 import 'package:drosdogram/presentation/order_screens/order_chat/widgets/chat_picked_image_widget.dart';
+import 'package:drosdogram/presentation/order_screens/order_chat/widgets/loading_send_message_widget.dart';
 import 'package:drosdogram/presentation/order_screens/order_chat/widgets/object_panel_chat_widget.dart';
+import 'package:drosdogram/presentation/order_screens/order_chat/widgets/picker_image.dart';
+import 'package:drosdogram/presentation/order_screens/order_chat/widgets/send_message_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,6 +51,24 @@ class OrderChatScreen extends StatelessWidget {
         return alert;
       },
     );
+  }
+
+  Future<void> _sendMessage(BuildContext context) async {
+    Future.delayed(
+      Duration.zero,
+      () {
+        BlocProvider.of<ChatMessageBloc>(context)
+            .add(ChatMessageEvent.sendMessage(requestId: request.id));
+      },
+    ).then((_) {
+      Future.delayed(
+        const Duration(milliseconds: 300),
+        () {
+          BlocProvider.of<AgentRequestBloc>(context)
+              .add(const AgentRequestEvent.getAgentRequests());
+        },
+      );
+    });
   }
 
   @override
@@ -187,40 +208,24 @@ class OrderChatScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const ChatPickedImageWidget(),
-                          const SizedBox(width: 4),
-                          InkWell(
-                            onTap: () async => Future.delayed(
-                              Duration.zero,
-                              () {
-                                BlocProvider.of<ChatMessageBloc>(context).add(
-                                    ChatMessageEvent.sendMessage(
-                                        requestId: request.id));
-                              },
-                            ).then((_) {
-                              Future.delayed(
-                                const Duration(milliseconds: 300),
-                                () {
-                                  BlocProvider.of<AgentRequestBloc>(context)
-                                      .add(const AgentRequestEvent
-                                          .getAgentRequests());
-                                },
-                              );
-                            }),
-                            child: state.isSubmitting
-                                ? Container(
-                                    width: 24,
-                                    height: 24,
-                                    padding: const EdgeInsets.all(5),
-                                    child: CircularProgressIndicatorWidget(),
-                                  )
-                                : SvgPicture.asset(
-                                    "assets/images/send-message.svg",
-                                    color: state.message.isEmpty
-                                        ? Colors.grey[500]
-                                        : Colors.yellow,
-                                  ),
-                          ),
+                          if (state.isSubmitting) ...[
+                            const PickerImage(),
+                            const SizedBox(width: 4),
+                            const LoadingSendMessageWidget()
+                          ] else ...[
+                            const ChatPickedImageWidget(),
+                            const SizedBox(width: 4),
+                            if (state.message.isEmpty && state.file == null)
+                              const SendMessageImage()
+                            else
+                              InkWell(
+                                onTap: () => _sendMessage(context),
+                                child: SvgPicture.asset(
+                                  "assets/images/send-message.svg",
+                                  color: Colors.yellow,
+                                ),
+                              ),
+                          ],
                         ],
                       ),
                     ),

@@ -60,7 +60,7 @@ class _PhotoAvatarWidgetState extends State<PhotoAvatarWidget> {
                     borderRadius: BorderRadius.circular(100.0),
                     child: Image.file(
                       File(_imageFile!.path),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   )
                 : Icon(Icons.camera_alt, color: Colors.grey[800]),
@@ -82,7 +82,7 @@ class _PhotoAvatarWidgetState extends State<PhotoAvatarWidget> {
                 child: CachedNetworkImage(
                   imageUrl: widget.imageSrc ??
                       'https://drosdogram.pixelation.ru/uploads/slider/1d2631340cf9eb0b.png',
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

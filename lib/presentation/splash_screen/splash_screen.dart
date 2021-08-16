@@ -25,13 +25,13 @@ class SplashScreen extends StatelessWidget {
                   SvgPicture.asset("assets/images/logo-long.svg"),
                   const SizedBox(height: 70),
                   const Text(
-                    "100% гарантия\nзащиты контактов",
+                    "Сервис по работе с Агентами по недвижимости",
                     textAlign: TextAlign.center,
                     style: Style.splashScreenFirstStyle,
                   ),
                   const SizedBox(height: 15),
                   const Text(
-                    "Наши продажники общаются только внутри вашей сделки через SIP телефонию",
+                    "Удаленные звонки по Вашим заявкам\nчерез SIP телефонию",
                     textAlign: TextAlign.center,
                     style: Style.splashScreenSecondStyle,
                   ),

@@ -97,7 +97,7 @@ class AuthRepository {
         );
       }
     } catch (e) {
-      throw ApiWrongResponse(msg: e.toString());
+      throw ApiWrongResponse(msg: "Сетевая ошибка. Проверьте соединения.");
     }
   }
 
@@ -118,7 +118,7 @@ class AuthRepository {
         );
       }
     } catch (e) {
-      throw ApiWrongResponse(msg: e.toString());
+      throw ApiWrongResponse(msg: "Сетевая ошибка. Проверьте соединения.");
     }
   }
 
@@ -142,7 +142,7 @@ class AuthRepository {
         );
       }
     } catch (e) {
-      throw ApiWrongResponse(msg: e.toString());
+      throw ApiWrongResponse(msg: "Сетевая ошибка. Проверьте соединения.");
     }
   }
 
@@ -168,7 +168,7 @@ class AuthRepository {
         );
       }
     } catch (e) {
-      throw ApiWrongResponse(msg: e.toString());
+      throw ApiWrongResponse(msg: "Сетевая ошибка. Проверьте соединения.");
     }
   }
 }

@@ -16,6 +16,7 @@ class Bobject {
     required this.area,
     required this.price,
     required this.hypothec,
+    required this.link,
     required this.image,
     required this.addImaage,
   });
@@ -29,6 +30,7 @@ class Bobject {
   final String area;
   final String price;
   final String hypothec;
+  final String link;
   final String image;
   final List<String> addImaage;
 
@@ -42,6 +44,7 @@ class Bobject {
     String? area,
     String? price,
     String? hypothec,
+    String? link,
     String? image,
     List<String>? addImaage,
   }) =>
@@ -55,6 +58,7 @@ class Bobject {
         area: area ?? this.area,
         price: price ?? this.price,
         hypothec: hypothec ?? this.hypothec,
+        link: link ?? this.link,
         image: image ?? this.image,
         addImaage: addImaage ?? this.addImaage,
       );
@@ -70,6 +74,7 @@ class Bobject {
         area: json["area"] == null ? '' : json["area"].toString(),
         price: json["price"] == null ? '' : json["price"].toString(),
         hypothec: json["hypothec"] == null ? '' : json["hypothec"].toString(),
+        link: json["link"] == null ? '' : json["link"].toString(),
         image: json["image"] == null ? '' : json["image"].toString(),
         addImaage: json["add_imaage"] == null
             ? []
@@ -86,6 +91,7 @@ class Bobject {
         "area": area,
         "price": price,
         "hypothec": hypothec,
+        "link": link,
         "image": image,
         "add_imaage": addImaage.isEmpty
             ? null

@@ -107,9 +107,8 @@ class ChatMessageBloc extends Bloc<ChatMessageEvent, ChatMessageState> {
           isSubmitting: true,
           failureOrUnitOption: none(),
         );
-
         final isMessage = state.message.isNotEmpty;
-        if (isMessage) {
+        if (isMessage || state.file != null) {
           final _res = await _repository.sendChatMessage(
             requestId: e.requestId,
             message: state.message,

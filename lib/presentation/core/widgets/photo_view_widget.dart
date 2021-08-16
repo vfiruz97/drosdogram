@@ -40,7 +40,13 @@ class PhotoViewWidget extends StatelessWidget {
                   color: Colors.transparent,
                 ),
                 loadingBuilder: (context, _) {
-                  return CircularProgressIndicatorWidget();
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicatorWidget(),
+                    ),
+                  );
                 },
               ),
               Positioned(

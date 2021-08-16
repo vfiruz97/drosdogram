@@ -32,25 +32,40 @@ class BottomNavBarWidget extends StatelessWidget {
                 iconImage: "nav-home",
                 index: 0,
                 curIndex: state.curScr.index,
-                onTap: () => context
-                    .read<BottomNavBloc>()
-                    .add(const BottomNavEvent.changeTo(scr: HomeScr())),
+                onTap: () {
+                  if (context.read<BottomNavBloc>().state.curScr !=
+                      const HomeScr()) {
+                    context
+                        .read<BottomNavBloc>()
+                        .add(const BottomNavEvent.changeTo(scr: HomeScr()));
+                  }
+                },
               ),
               createNavigationItem(
                 iconImage: "nav-request",
                 index: 1,
                 curIndex: state.curScr.index,
-                onTap: () => context
-                    .read<BottomNavBloc>()
-                    .add(const BottomNavEvent.changeTo(scr: RequestScr())),
+                onTap: () {
+                  if (context.read<BottomNavBloc>().state.curScr !=
+                      const RequestScr()) {
+                    context
+                        .read<BottomNavBloc>()
+                        .add(const BottomNavEvent.changeTo(scr: RequestScr()));
+                  }
+                },
               ),
               createNavigationItem(
                 iconImage: "nav-user",
                 index: 2,
                 curIndex: state.curScr.index,
-                onTap: () => context
-                    .read<BottomNavBloc>()
-                    .add(const BottomNavEvent.changeTo(scr: ProfileScr())),
+                onTap: () {
+                  if (context.read<BottomNavBloc>().state.curScr !=
+                      const ProfileScr()) {
+                    context
+                        .read<BottomNavBloc>()
+                        .add(const BottomNavEvent.changeTo(scr: ProfileScr()));
+                  }
+                },
               ),
             ],
           ),
