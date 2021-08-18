@@ -16,12 +16,9 @@ class DoublePhotoCardWidget extends StatelessWidget {
     final List<Widget> _sliders = [];
     int index = 0;
 
-    int _im1Index = 0;
-    int _im2Index = 0;
-
     for (var i = 0; i < imageCount / 2; i++) {
-      _im1Index = index;
-      if ((index + 1) < imageCount) _im2Index = index + 1;
+      final int _im1Index = index;
+      final int _im2Index = index + 1;
       _sliders.add(
         Row(
           children: [

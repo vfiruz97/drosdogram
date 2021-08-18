@@ -16,6 +16,7 @@ import 'package:drosdogram/presentation/core/styles/style.dart';
 import 'package:drosdogram/presentation/core/widgets/yellow_button_widget.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -112,19 +113,65 @@ class ProfileScreen extends StatelessWidget {
                                 hintText: 'ФИО*'),
                           ),
                           const SizedBox(height: 25),
-                          TextFormField(
-                            controller: _agencyC,
-                            onChanged: (value) => context
-                                .read<ProfileBloc>()
-                                .add(ProfileEvent.changeAgency(value)),
-                            validator: (_) => validateAgencyIsIsset(
-                              context.read<ProfileBloc>().state.userInfo.agency,
-                              state.agencyList,
+                          TypeAheadField(
+                            textFieldConfiguration: TextFieldConfiguration(
+                              controller: _agencyC,
+                              style: Style.textFieldFirstStyle,
+                              decoration: Style.splashScreenFirstDecorations(
+                                  hintText: 'Название агентства*'),
                             ),
-                            style: Style.textFieldFirstStyle,
-                            decoration: Style.splashScreenFirstDecorations(
-                                hintText: 'Название агентства*'),
+                            suggestionsCallback: (pattern) {
+                              return state.agencyList.where((agency) {
+                                if (agency.name.isValid()) {
+                                  return agency.name
+                                      .getOrCrash()
+                                      .toLowerCase()
+                                      .startsWith(pattern.toLowerCase());
+                                }
+                                return false;
+                              });
+                            },
+                            itemBuilder: (context, Agency? suggestion) {
+                              return ListTile(
+                                title: Text(
+                                  suggestion!.name.getOrCrash(),
+                                  style: Style.textFieldFirstStyle,
+                                ),
+                                trailing: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 12,
+                                ),
+                              );
+                            },
+                            onSuggestionSelected: (Agency? suggestion) {
+                              final _agencyName = suggestion!.name.getOrCrash();
+                              _agencyC.text = _agencyName;
+                              context
+                                  .read<ProfileBloc>()
+                                  .add(ProfileEvent.changeAgency(_agencyName));
+                            },
+                            noItemsFoundBuilder: (context) {
+                              return const ListTile(
+                                title: Text(
+                                  "Нет такого названия агентства",
+                                  style: Style.textFieldFirstStyle,
+                                ),
+                              );
+                            },
                           ),
+                          // TextFormField(
+                          //   controller: _agencyC,
+                          //   onChanged: (value) => context
+                          //       .read<ProfileBloc>()
+                          //       .add(ProfileEvent.changeAgency(value)),
+                          //   validator: (_) => validateAgencyIsIsset(
+                          //     context.read<ProfileBloc>().state.userInfo.agency,
+                          //     state.agencyList,
+                          //   ),
+                          //   style: Style.textFieldFirstStyle,
+                          //   decoration: Style.splashScreenFirstDecorations(
+                          //       hintText: 'Название агентства*'),
+                          // ),
                           const SizedBox(height: 15),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -275,19 +322,19 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-String? validateAgencyIsIsset(Agency? agency, List<Agency> agencies) {
-  if (agency == null) {
-    return 'Inter agency name';
-  } else if (!agency.name.isValid()) {
-    return 'Ввели не правельный название агенства';
-  } else if (agencies.isEmpty) {
-    return 'Register new agency';
-  } else if (agencies.any((el) => el.name.value.fold(
-      (_) => false,
-      (name) =>
-          name.toLowerCase() == agency.name.getOrCrash().toLowerCase()))) {
-    return null;
-  } else {
-    return 'Нет такого названия агентства';
-  }
-}
+// String? validateAgencyIsIsset(Agency? agency, List<Agency> agencies) {
+//   if (agency == null) {
+//     return 'Inter agency name';
+//   } else if (!agency.name.isValid()) {
+//     return 'Ввели не правельный название агенства';
+//   } else if (agencies.isEmpty) {
+//     return 'Register new agency';
+//   } else if (agencies.any((el) => el.name.value.fold(
+//       (_) => false,
+//       (name) =>
+//           name.toLowerCase() == agency.name.getOrCrash().toLowerCase()))) {
+//     return null;
+//   } else {
+//     return 'Нет такого названия агентства';
+//   }
+// }

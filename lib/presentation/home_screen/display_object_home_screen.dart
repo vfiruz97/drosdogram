@@ -11,7 +11,6 @@ import 'package:drosdogram/presentation/core/widgets/first_title_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/outline_button_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/yellow_button_widget.dart';
 import 'package:drosdogram/presentation/home_screen/widgets/double_photo_card_widget.dart';
-import 'package:drosdogram/presentation/home_screen/widgets/single_photo_card_widget.dart';
 import 'package:drosdogram/presentation/home_screen/widgets/status_info_card_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -46,8 +45,8 @@ class DisplayObjectHomeScreen extends StatelessWidget {
                   const SizedBox(height: 12),
                   AddressWidget(address: object.address),
                   const SizedBox(height: 20),
-                  SinglePhotoCardWidget(backImage: object.image),
-                  const SizedBox(height: 7),
+                  // SinglePhotoCardWidget(backImage: object.image),
+                  // const SizedBox(height: 7),
                   DoublePhotoCardWidget(images: object.addImaage),
                   const SizedBox(height: 20),
                   if (object.status.isNotEmpty)

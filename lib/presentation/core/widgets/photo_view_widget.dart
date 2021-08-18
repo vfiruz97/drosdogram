@@ -116,7 +116,7 @@ class _GalleryPhotoiewWidgetState extends State<GalleryPhotoiewWidget> {
       backgroundColor: Colors.black.withOpacity(0.5),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(1.0),
           child: Stack(
             alignment: Alignment.bottomRight,
             children: [

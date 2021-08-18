@@ -89,12 +89,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           failureOrOption: none(),
         );
 
-        final _agency = await _userRepository.getAgency();
-
-        yield state.copyWith(
-          agencyList: _agency.fold((f) => [], (agencies) => agencies),
-          failureOrOption: none(),
-        );
+        if (state.agencyList.isEmpty) {
+          final _agency = await _userRepository.getAgency();
+          yield state.copyWith(
+            agencyList: _agency.fold((f) => [], (agencies) => agencies),
+            failureOrOption: none(),
+          );
+        }
 
         final _response = await _userRepository.getUserInfo();
 
