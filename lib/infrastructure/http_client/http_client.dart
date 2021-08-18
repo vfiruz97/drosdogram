@@ -43,7 +43,9 @@ class HttpClient {
     Map<String, dynamic>? data,
   }) async {
     try {
-      dio.options.headers['Authorization'] = _authToken;
+      if (_authToken != null) {
+        dio.options.headers['Authorization'] = _authToken ?? '';
+      }
       final Response _response = await dio.post(url, data: data);
       debugPrint("token:-: $_authToken | $url\n${DateTime.now().toString()}");
       debugPrint(data.toString());
@@ -57,7 +59,9 @@ class HttpClient {
 
   Future<Response> get(String url) async {
     try {
-      dio.options.headers['Authorization'] = _authToken;
+      if (_authToken != null) {
+        dio.options.headers['Authorization'] = _authToken;
+      }
       final Response _response = await dio.get(url);
       return _response;
     } catch (e) {
@@ -67,7 +71,10 @@ class HttpClient {
 
   Future<void> test() async {
     try {
-      dio.options.headers['Authorization'] = _authToken;
+      if (_authToken != null) {
+        dio.options.headers['Authorization'] = _authToken;
+      }
+
       final Response _response = await dio.post('chat', data: {
         'prev': true,
         'request_id': 51,

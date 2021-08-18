@@ -23,7 +23,7 @@ class AuthRepository {
   Future<void> cacheAuthToken() async {
     try {
       authToken ??= await getAuthToken();
-      http.token = authToken;
+      http.token = authToken ?? '';
     } catch (e) {
       authToken = null;
     }
@@ -97,7 +97,7 @@ class AuthRepository {
         );
       }
     } catch (e) {
-      throw ApiWrongResponse(msg: "Сетевая ошибка. Проверьте соединения.");
+      throw ApiWrongResponse(msg: e.toString());
     }
   }
 
@@ -118,7 +118,7 @@ class AuthRepository {
         );
       }
     } catch (e) {
-      throw ApiWrongResponse(msg: "Сетевая ошибка. Проверьте соединения.");
+      throw ApiWrongResponse(msg: e.toString());
     }
   }
 
@@ -142,7 +142,7 @@ class AuthRepository {
         );
       }
     } catch (e) {
-      throw ApiWrongResponse(msg: "Сетевая ошибка. Проверьте соединения.");
+      throw ApiWrongResponse(msg: e.toString());
     }
   }
 
@@ -168,7 +168,7 @@ class AuthRepository {
         );
       }
     } catch (e) {
-      throw ApiWrongResponse(msg: "Сетевая ошибка. Проверьте соединения.");
+      throw ApiWrongResponse(msg: e.toString());
     }
   }
 }
