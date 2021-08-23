@@ -269,6 +269,27 @@ class Style {
         ),
       );
 
+  static InputDecoration splashScreenSecondDecorations({
+    String hintText = 'Иванов Иван Иванович',
+  }) =>
+      InputDecoration(
+        hintText: hintText,
+        contentPadding:
+            const EdgeInsets.only(left: 16, top: 13, bottom: 13, right: 8),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderSide: BorderSide(
+            color: Color.fromRGBO(250, 0, 0, 0.25),
+          ),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderSide: BorderSide(
+            color: Color.fromRGBO(250, 0, 0, 0.25),
+          ),
+        ),
+      );
+
   static const chatTextareaDecoratdion = InputDecoration(
     contentPadding: EdgeInsets.only(left: 16, top: 13, bottom: 13, right: 56),
     border: OutlineInputBorder(

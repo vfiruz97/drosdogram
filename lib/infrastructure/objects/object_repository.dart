@@ -102,8 +102,6 @@ class ObjectRepository implements IObjectRepository {
       {required OrderM order}) async {
     try {
       final data = order.toJson();
-      print("data");
-      print(data);
       final _response = await http.post(addRequestUrl, data: data);
       final _body = jsonDecode(_response.toString());
       if (_response.statusCode == 200 && _body['success'] == true) {

@@ -4,7 +4,6 @@ import 'package:drosdogram/aplication/profile/profile_bloc.dart';
 import 'package:drosdogram/domain/profile/agency.dart';
 import 'package:drosdogram/presentation/core/dialog_templates/agency_create_form_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/app_bar_widget.dart';
-import 'package:drosdogram/presentation/core/widgets/outline_button_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/photo_avatar_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/text_underlined_button_widget.dart';
 import 'package:drosdogram/presentation/splash_screen/load_widget.dart';
@@ -14,6 +13,7 @@ import 'package:drosdogram/presentation/core/styles/style.dart';
 import 'package:drosdogram/presentation/core/widgets/yellow_button_widget.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class FinishRegisterScreenBodyWidget extends StatelessWidget {
@@ -28,6 +28,7 @@ class FinishRegisterScreenBodyWidget extends StatelessWidget {
     final _agencyC = TextEditingController(text: '');
 
     return BlocConsumer<ProfileBloc, ProfileState>(
+      listenWhen: (p, c) => p.failureOrOption != c.failureOrOption,
       listener: (context, state) {
         state.failureOrOption.fold(
           () => {},
@@ -50,9 +51,11 @@ class FinishRegisterScreenBodyWidget extends StatelessWidget {
               leftBarIndicatorColor: Colors.red[300],
             )..show(context),
             (_) {
-              BlocProvider.of<AuthBloc>(context)
-                  .add(const AuthEvent.removeRegIsComplete());
-              Navigator.pushReplacementNamed(context, '/screen-navigation');
+              if (state.userInfo.isComplete == 1) {
+                BlocProvider.of<AuthBloc>(context)
+                    .add(const AuthEvent.removeRegIsComplete());
+                Navigator.pushReplacementNamed(context, '/screen-navigation');
+              }
             },
           ),
         );
@@ -113,18 +116,55 @@ class FinishRegisterScreenBodyWidget extends StatelessWidget {
                                 hintText: 'ФИО*'),
                           ),
                           const SizedBox(height: 25),
-                          TextFormField(
-                            controller: _agencyC,
-                            onChanged: (value) => context
-                                .read<ProfileBloc>()
-                                .add(ProfileEvent.changeAgency(value)),
-                            validator: (_) => validateAgencyIsIsset(
-                              context.read<ProfileBloc>().state.userInfo.agency,
-                              state.agencyList,
+                          TypeAheadField(
+                            textFieldConfiguration: TextFieldConfiguration(
+                              controller: _agencyC,
+                              style: Style.textFieldFirstStyle,
+                              decoration: state.userInfo.agency != null &&
+                                      state.userInfo.agency!.name.isValid()
+                                  ? Style.splashScreenFirstDecorations(
+                                      hintText: 'Название агентства*')
+                                  : Style.splashScreenSecondDecorations(
+                                      hintText: 'Название агентства*'),
                             ),
-                            style: Style.textFieldFirstStyle,
-                            decoration: Style.splashScreenFirstDecorations(
-                                hintText: 'Название агентства*'),
+                            suggestionsCallback: (pattern) {
+                              return state.agencyList.where((agency) {
+                                if (agency.name.isValid()) {
+                                  return agency.name
+                                      .getOrCrash()
+                                      .toLowerCase()
+                                      .startsWith(pattern.toLowerCase());
+                                }
+                                return false;
+                              });
+                            },
+                            itemBuilder: (context, Agency? suggestion) {
+                              return ListTile(
+                                title: Text(
+                                  suggestion!.name.getOrCrash(),
+                                  style: Style.textFieldFirstStyle,
+                                ),
+                                trailing: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 12,
+                                ),
+                              );
+                            },
+                            onSuggestionSelected: (Agency? suggestion) {
+                              final _agencyName = suggestion!.name.getOrCrash();
+                              _agencyC.text = _agencyName;
+                              context
+                                  .read<ProfileBloc>()
+                                  .add(ProfileEvent.changeAgency(_agencyName));
+                            },
+                            noItemsFoundBuilder: (context) {
+                              return const ListTile(
+                                title: Text(
+                                  "Нет такого названия агентства",
+                                  style: Style.textFieldFirstStyle,
+                                ),
+                              );
+                            },
                           ),
                           const SizedBox(height: 15),
                           Row(
@@ -244,15 +284,6 @@ class FinishRegisterScreenBodyWidget extends StatelessWidget {
                               backgroundColor: Colors.white,
                             )
                           ],
-                          const SizedBox(height: 25),
-                          OutlineButtonWidget(
-                            label: "Выйти",
-                            onTap: () async {
-                              BlocProvider.of<AuthBloc>(context)
-                                  .add(const AuthEvent.signOut());
-                            },
-                            width: double.infinity,
-                          ),
                         ],
                       ),
                     ),
@@ -267,22 +298,5 @@ class FinishRegisterScreenBodyWidget extends StatelessWidget {
         return const SizedBox();
       },
     );
-  }
-}
-
-String? validateAgencyIsIsset(Agency? agency, List<Agency> agencies) {
-  if (agency == null) {
-    return 'Inter agency name';
-  } else if (!agency.name.isValid()) {
-    return 'Ввели не правельный название агенства';
-  } else if (agencies.isEmpty) {
-    return 'Register new agency';
-  } else if (agencies.any((el) => el.name.value.fold(
-      (_) => false,
-      (name) =>
-          name.toLowerCase() == agency.name.getOrCrash().toLowerCase()))) {
-    return null;
-  } else {
-    return 'Нет такого названия агентства';
   }
 }

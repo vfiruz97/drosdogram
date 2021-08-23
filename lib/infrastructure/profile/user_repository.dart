@@ -42,7 +42,7 @@ class UserRepository implements IUserRepository {
       final _response = await http.post(userEditUrl, data: data);
       final _body = jsonDecode(_response.toString());
       if (_response.statusCode == 200 && _body['success'] == true) {
-        return right(user);
+        return right(user.copyWith(isComplete: 1));
       } else {
         return left(ProfileFailure.responseError(
           _body['notice'] != null
