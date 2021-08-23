@@ -22,9 +22,11 @@ class CreateOrderFormScreen extends StatelessWidget {
   const CreateOrderFormScreen({
     Key? key,
     required this.object,
+    this.isHypotec = false,
   }) : super(key: key);
 
   final Bobject object;
+  final bool isHypotec;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +34,9 @@ class CreateOrderFormScreen extends StatelessWidget {
         MaskTextInputFormatter(mask: '+7 (###) ###-##-##');
 
     return BlocProvider(
-      create: (context) =>
-          getIt<OrderFormBloc>()..add(OrderFormEvent.changeObjectId(object.id)),
+      create: (context) => getIt<OrderFormBloc>()
+        ..add(OrderFormEvent.changeObjectId(object.id))
+        ..add(OrderFormEvent.changeIsHypotec(isHypotec: isHypotec)),
       child: SingleChildScrollView(
         child: BlocConsumer<OrderFormBloc, OrderFormState>(
           listener: (context, state) {

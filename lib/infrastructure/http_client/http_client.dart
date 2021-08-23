@@ -53,7 +53,7 @@ class HttpClient {
       return _response;
     } catch (e) {
       debugPrint(e.toString());
-      throw NetworkError();
+      throw NetworkError(msg: e.toString());
     }
   }
 

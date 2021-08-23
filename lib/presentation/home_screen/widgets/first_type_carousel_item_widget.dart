@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:drosdogram/domain/objects/main_objects/slider.dart' as s;
-import 'package:drosdogram/presentation/core/dialog_templates/ipoteka_create_form_widget.dart';
-import 'package:drosdogram/presentation/core/widgets/green_button_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:drosdogram/presentation/core/styles/style.dart';
@@ -35,11 +33,11 @@ class FirstTypeCarouselItemWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Style.carouselItemSecondStyle,
           ),
-          if (slider.isPop == "1" && slider.link == '#pop-hypothec')
-            GreenButtonWidget(
-              label: slider.linkText,
-              onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(context),
-            ),
+          // if (slider.isPop == "1" && slider.link == '#pop-hypothec')
+          //   GreenButtonWidget(
+          //     label: slider.linkText,
+          //     onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(context),
+          //   ),
         ],
       ),
     );

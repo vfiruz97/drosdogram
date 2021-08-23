@@ -1,7 +1,19 @@
 import 'package:drosdogram/domain/core/failure.dart';
 
 class NotAuthenticatedError extends Error {}
-class NetworkError extends Error {}
+
+class NetworkError extends Error {
+  NetworkError({
+    this.msg = '',
+  });
+
+  final String msg;
+
+  @override
+  String toString() {
+    return msg;
+  }
+}
 
 class ApiWrongResponse extends Error {
   final int? statusCode;

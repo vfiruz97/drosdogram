@@ -4,6 +4,7 @@ import 'package:drosdogram/aplication/objects/slider/slider_bloc.dart';
 import 'package:drosdogram/aplication/profile/faq/faq_bloc.dart';
 import 'package:drosdogram/domain/objects/main_objects/agent_request.dart';
 import 'package:drosdogram/domain/objects/main_objects/bobject.dart';
+import 'package:drosdogram/domain/objects/main_objects/order_data.dart';
 import 'package:drosdogram/injection.dart';
 import 'package:drosdogram/presentation/faq/faq_screen.dart';
 import 'package:drosdogram/presentation/home_screen/display_object_home_screen.dart';
@@ -56,8 +57,12 @@ class BottomNavBodyWidget extends StatelessWidget {
               }
               return const LoadWidget();
             case HomeOrderFormScr():
-              if (state.data != null && state.data is Bobject) {
-                return CreateOrderFormScreen(object: state.data as Bobject);
+              if (state.data != null && state.data is OrderData) {
+                final _orderData = state.data as OrderData;
+                return CreateOrderFormScreen(
+                  object: _orderData.bobject,
+                  isHypotec: _orderData.isHypotec,
+                );
               }
               return const LoadWidget();
             case RequestScr():

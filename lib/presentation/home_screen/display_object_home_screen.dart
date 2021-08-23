@@ -1,10 +1,10 @@
 import 'package:drosdogram/aplication/screen_bottom_navigator/bottom_nav_bloc.dart';
 import 'package:drosdogram/aplication/screen_bottom_navigator/screen_nav_list.dart';
+import 'package:drosdogram/domain/objects/main_objects/order_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:drosdogram/domain/objects/main_objects/bobject.dart';
 import 'package:drosdogram/presentation/core/config/config.dart';
-import 'package:drosdogram/presentation/core/dialog_templates/ipoteka_create_form_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/address_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/app_bar_widget.dart';
 import 'package:drosdogram/presentation/core/widgets/first_title_widget.dart';
@@ -84,16 +84,22 @@ class DisplayObjectHomeScreen extends StatelessWidget {
                     label: 'Подать заявку',
                     isDisable: false,
                     onTap: () => BlocProvider.of<BottomNavBloc>(context).add(
-                        BottomNavEvent.changeTo(
-                            scr: const HomeOrderFormScr(), data: object)),
+                      BottomNavEvent.changeTo(
+                        scr: const HomeOrderFormScr(),
+                        data: OrderData(bobject: object, isHypotec: false),
+                      ),
+                    ),
                     width: double.infinity,
                   ),
                   const SizedBox(height: 15),
                   OutlineButtonWidget(
                     label: 'Подать заявку на ипотеку',
-                    onTap: () => IpotekaCreateFormWidget.showIpotekaDialog(
-                        context,
-                        objectName: object.name),
+                    onTap: () => BlocProvider.of<BottomNavBloc>(context).add(
+                      BottomNavEvent.changeTo(
+                        scr: const HomeOrderFormScr(),
+                        data: OrderData(bobject: object, isHypotec: true),
+                      ),
+                    ),
                     width: double.infinity,
                     color: const Color.fromRGBO(33, 160, 56, 1),
                   ),

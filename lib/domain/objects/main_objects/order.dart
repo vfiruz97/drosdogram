@@ -17,6 +17,7 @@ class OrderM {
     required this.request,
     required this.objectId,
     required this.images,
+    this.isHypothec = false,
   });
 
   final Name name;
@@ -24,6 +25,7 @@ class OrderM {
   final Request request;
   final String objectId;
   final List<String> images;
+  final bool isHypothec;
 
   OrderM copyWith({
     Name? name,
@@ -31,6 +33,7 @@ class OrderM {
     Request? request,
     String? objectId,
     List<String>? images,
+    bool? isHypothec,
   }) =>
       OrderM(
         name: name ?? this.name,
@@ -38,6 +41,7 @@ class OrderM {
         request: request ?? this.request,
         objectId: objectId ?? this.objectId,
         images: images ?? this.images,
+        isHypothec: isHypothec ?? this.isHypothec,
       );
 
   factory OrderM.empty() => OrderM(
@@ -60,6 +64,8 @@ class OrderM {
         images: json["images"] == null
             ? []
             : List<String>.from((json["images"] as List).map((x) => x)),
+        isHypothec: json["is_hypothec"] != null &&
+            json["is_hypothec"].toString().toLowerCase() == 'true',
       );
 
   Map<String, dynamic> toJson() => {
@@ -67,6 +73,7 @@ class OrderM {
         "phone": phone.isValid() ? phone.getOrCrash() : '',
         "request": request.isValid() ? request.getOrCrash() : '',
         "object_id": objectId,
+        "is_hypothec": isHypothec,
         "images": images.isEmpty
             ? null
             : List<dynamic>.from(images.map((i) =>

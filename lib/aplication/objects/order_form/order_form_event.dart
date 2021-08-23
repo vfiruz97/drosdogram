@@ -10,5 +10,7 @@ class OrderFormEvent with _$OrderFormEvent {
       _ChangeObjectId;
   const factory OrderFormEvent.changeImages(List<String> images) =
       _ChangeImages;
+  const factory OrderFormEvent.changeIsHypotec({required bool isHypotec}) =
+      _ChangeIsHypotec;
   const factory OrderFormEvent.submit() = _Submit;
 }

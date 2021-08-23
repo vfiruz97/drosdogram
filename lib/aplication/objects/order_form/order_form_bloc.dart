@@ -46,6 +46,12 @@ class OrderFormBloc extends Bloc<OrderFormEvent, OrderFormState> {
           failureOrOption: none(),
         );
       },
+      changeIsHypotec: (e) async* {
+        yield state.copyWith(
+          order: state.order.copyWith(isHypothec: e.isHypotec),
+          failureOrOption: none(),
+        );
+      },
       changePhone: (e) async* {
         yield state.copyWith(
           order: state.order.copyWith(phone: Phone(e.phoneStr)),

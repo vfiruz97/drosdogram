@@ -19,13 +19,13 @@ class NoteBottomCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Text(
-            "Менеджер отдела продаж\nне видит номер клиента",
+            "Менеджеры отдела продаж общается через SIP-телефонию.",
             style: Style.bottomNoteCardFirstStyle,
           ),
           SizedBox(height: 15),
           Expanded(
             child: Text(
-              "Наши продажники общаются только внутри\nвашей сделки через SIP телефонию",
+              "Наши специалисты не видят номера клиента.",
               style: Style.bottomNoteCardSecondStyle,
             ),
           ),

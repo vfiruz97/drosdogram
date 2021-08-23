@@ -42,6 +42,20 @@ class _PhotoAvatarWidgetState extends State<PhotoAvatarWidget> {
   }
 
   @override
+  void initState() {
+    if (widget.imageSrc != null) {
+      final String _imageUri = widget.imageSrc ?? '';
+      final bool _validURL = Uri.parse(_imageUri).isAbsolute;
+
+      if (!_validURL && _imageUri.isNotEmpty) {
+        _imageFile = XFile(widget.imageSrc ?? '');
+      }
+    }
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [

@@ -46,6 +46,12 @@ class _$OrderFormEventTearOff {
     );
   }
 
+  _ChangeIsHypotec changeIsHypotec({required bool isHypotec}) {
+    return _ChangeIsHypotec(
+      isHypotec: isHypotec,
+    );
+  }
+
   _Submit submit() {
     return const _Submit();
   }
@@ -63,6 +69,7 @@ mixin _$OrderFormEvent {
     required TResult Function(String requestStr) changeRequest,
     required TResult Function(String objectId) changeObjectId,
     required TResult Function(List<String> images) changeImages,
+    required TResult Function(bool isHypotec) changeIsHypotec,
     required TResult Function() submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +80,7 @@ mixin _$OrderFormEvent {
     TResult Function(String requestStr)? changeRequest,
     TResult Function(String objectId)? changeObjectId,
     TResult Function(List<String> images)? changeImages,
+    TResult Function(bool isHypotec)? changeIsHypotec,
     TResult Function()? submit,
     required TResult orElse(),
   }) =>
@@ -84,6 +92,7 @@ mixin _$OrderFormEvent {
     required TResult Function(_ChangeRequest value) changeRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
     required TResult Function(_ChangeImages value) changeImages,
+    required TResult Function(_ChangeIsHypotec value) changeIsHypotec,
     required TResult Function(_Submit value) submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -94,6 +103,7 @@ mixin _$OrderFormEvent {
     TResult Function(_ChangeRequest value)? changeRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     TResult Function(_ChangeImages value)? changeImages,
+    TResult Function(_ChangeIsHypotec value)? changeIsHypotec,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) =>
@@ -186,6 +196,7 @@ class _$_ChangeName implements _ChangeName {
     required TResult Function(String requestStr) changeRequest,
     required TResult Function(String objectId) changeObjectId,
     required TResult Function(List<String> images) changeImages,
+    required TResult Function(bool isHypotec) changeIsHypotec,
     required TResult Function() submit,
   }) {
     return changeName(nameStr);
@@ -199,6 +210,7 @@ class _$_ChangeName implements _ChangeName {
     TResult Function(String requestStr)? changeRequest,
     TResult Function(String objectId)? changeObjectId,
     TResult Function(List<String> images)? changeImages,
+    TResult Function(bool isHypotec)? changeIsHypotec,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -216,6 +228,7 @@ class _$_ChangeName implements _ChangeName {
     required TResult Function(_ChangeRequest value) changeRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
     required TResult Function(_ChangeImages value) changeImages,
+    required TResult Function(_ChangeIsHypotec value) changeIsHypotec,
     required TResult Function(_Submit value) submit,
   }) {
     return changeName(this);
@@ -229,6 +242,7 @@ class _$_ChangeName implements _ChangeName {
     TResult Function(_ChangeRequest value)? changeRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     TResult Function(_ChangeImages value)? changeImages,
+    TResult Function(_ChangeIsHypotec value)? changeIsHypotec,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
@@ -319,6 +333,7 @@ class _$_ChangePhone implements _ChangePhone {
     required TResult Function(String requestStr) changeRequest,
     required TResult Function(String objectId) changeObjectId,
     required TResult Function(List<String> images) changeImages,
+    required TResult Function(bool isHypotec) changeIsHypotec,
     required TResult Function() submit,
   }) {
     return changePhone(phoneStr);
@@ -332,6 +347,7 @@ class _$_ChangePhone implements _ChangePhone {
     TResult Function(String requestStr)? changeRequest,
     TResult Function(String objectId)? changeObjectId,
     TResult Function(List<String> images)? changeImages,
+    TResult Function(bool isHypotec)? changeIsHypotec,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -349,6 +365,7 @@ class _$_ChangePhone implements _ChangePhone {
     required TResult Function(_ChangeRequest value) changeRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
     required TResult Function(_ChangeImages value) changeImages,
+    required TResult Function(_ChangeIsHypotec value) changeIsHypotec,
     required TResult Function(_Submit value) submit,
   }) {
     return changePhone(this);
@@ -362,6 +379,7 @@ class _$_ChangePhone implements _ChangePhone {
     TResult Function(_ChangeRequest value)? changeRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     TResult Function(_ChangeImages value)? changeImages,
+    TResult Function(_ChangeIsHypotec value)? changeIsHypotec,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
@@ -452,6 +470,7 @@ class _$_ChangeRequest implements _ChangeRequest {
     required TResult Function(String requestStr) changeRequest,
     required TResult Function(String objectId) changeObjectId,
     required TResult Function(List<String> images) changeImages,
+    required TResult Function(bool isHypotec) changeIsHypotec,
     required TResult Function() submit,
   }) {
     return changeRequest(requestStr);
@@ -465,6 +484,7 @@ class _$_ChangeRequest implements _ChangeRequest {
     TResult Function(String requestStr)? changeRequest,
     TResult Function(String objectId)? changeObjectId,
     TResult Function(List<String> images)? changeImages,
+    TResult Function(bool isHypotec)? changeIsHypotec,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -482,6 +502,7 @@ class _$_ChangeRequest implements _ChangeRequest {
     required TResult Function(_ChangeRequest value) changeRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
     required TResult Function(_ChangeImages value) changeImages,
+    required TResult Function(_ChangeIsHypotec value) changeIsHypotec,
     required TResult Function(_Submit value) submit,
   }) {
     return changeRequest(this);
@@ -495,6 +516,7 @@ class _$_ChangeRequest implements _ChangeRequest {
     TResult Function(_ChangeRequest value)? changeRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     TResult Function(_ChangeImages value)? changeImages,
+    TResult Function(_ChangeIsHypotec value)? changeIsHypotec,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
@@ -585,6 +607,7 @@ class _$_ChangeObjectId implements _ChangeObjectId {
     required TResult Function(String requestStr) changeRequest,
     required TResult Function(String objectId) changeObjectId,
     required TResult Function(List<String> images) changeImages,
+    required TResult Function(bool isHypotec) changeIsHypotec,
     required TResult Function() submit,
   }) {
     return changeObjectId(objectId);
@@ -598,6 +621,7 @@ class _$_ChangeObjectId implements _ChangeObjectId {
     TResult Function(String requestStr)? changeRequest,
     TResult Function(String objectId)? changeObjectId,
     TResult Function(List<String> images)? changeImages,
+    TResult Function(bool isHypotec)? changeIsHypotec,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -615,6 +639,7 @@ class _$_ChangeObjectId implements _ChangeObjectId {
     required TResult Function(_ChangeRequest value) changeRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
     required TResult Function(_ChangeImages value) changeImages,
+    required TResult Function(_ChangeIsHypotec value) changeIsHypotec,
     required TResult Function(_Submit value) submit,
   }) {
     return changeObjectId(this);
@@ -628,6 +653,7 @@ class _$_ChangeObjectId implements _ChangeObjectId {
     TResult Function(_ChangeRequest value)? changeRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     TResult Function(_ChangeImages value)? changeImages,
+    TResult Function(_ChangeIsHypotec value)? changeIsHypotec,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
@@ -717,6 +743,7 @@ class _$_ChangeImages implements _ChangeImages {
     required TResult Function(String requestStr) changeRequest,
     required TResult Function(String objectId) changeObjectId,
     required TResult Function(List<String> images) changeImages,
+    required TResult Function(bool isHypotec) changeIsHypotec,
     required TResult Function() submit,
   }) {
     return changeImages(images);
@@ -730,6 +757,7 @@ class _$_ChangeImages implements _ChangeImages {
     TResult Function(String requestStr)? changeRequest,
     TResult Function(String objectId)? changeObjectId,
     TResult Function(List<String> images)? changeImages,
+    TResult Function(bool isHypotec)? changeIsHypotec,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -747,6 +775,7 @@ class _$_ChangeImages implements _ChangeImages {
     required TResult Function(_ChangeRequest value) changeRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
     required TResult Function(_ChangeImages value) changeImages,
+    required TResult Function(_ChangeIsHypotec value) changeIsHypotec,
     required TResult Function(_Submit value) submit,
   }) {
     return changeImages(this);
@@ -760,6 +789,7 @@ class _$_ChangeImages implements _ChangeImages {
     TResult Function(_ChangeRequest value)? changeRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     TResult Function(_ChangeImages value)? changeImages,
+    TResult Function(_ChangeIsHypotec value)? changeIsHypotec,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
@@ -776,6 +806,144 @@ abstract class _ChangeImages implements OrderFormEvent {
   List<String> get images => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$ChangeImagesCopyWith<_ChangeImages> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ChangeIsHypotecCopyWith<$Res> {
+  factory _$ChangeIsHypotecCopyWith(
+          _ChangeIsHypotec value, $Res Function(_ChangeIsHypotec) then) =
+      __$ChangeIsHypotecCopyWithImpl<$Res>;
+  $Res call({bool isHypotec});
+}
+
+/// @nodoc
+class __$ChangeIsHypotecCopyWithImpl<$Res>
+    extends _$OrderFormEventCopyWithImpl<$Res>
+    implements _$ChangeIsHypotecCopyWith<$Res> {
+  __$ChangeIsHypotecCopyWithImpl(
+      _ChangeIsHypotec _value, $Res Function(_ChangeIsHypotec) _then)
+      : super(_value, (v) => _then(v as _ChangeIsHypotec));
+
+  @override
+  _ChangeIsHypotec get _value => super._value as _ChangeIsHypotec;
+
+  @override
+  $Res call({
+    Object? isHypotec = freezed,
+  }) {
+    return _then(_ChangeIsHypotec(
+      isHypotec: isHypotec == freezed
+          ? _value.isHypotec
+          : isHypotec // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeIsHypotec implements _ChangeIsHypotec {
+  const _$_ChangeIsHypotec({required this.isHypotec});
+
+  @override
+  final bool isHypotec;
+
+  @override
+  String toString() {
+    return 'OrderFormEvent.changeIsHypotec(isHypotec: $isHypotec)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ChangeIsHypotec &&
+            (identical(other.isHypotec, isHypotec) ||
+                const DeepCollectionEquality()
+                    .equals(other.isHypotec, isHypotec)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isHypotec);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ChangeIsHypotecCopyWith<_ChangeIsHypotec> get copyWith =>
+      __$ChangeIsHypotecCopyWithImpl<_ChangeIsHypotec>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String nameStr) changeName,
+    required TResult Function(String phoneStr) changePhone,
+    required TResult Function(String requestStr) changeRequest,
+    required TResult Function(String objectId) changeObjectId,
+    required TResult Function(List<String> images) changeImages,
+    required TResult Function(bool isHypotec) changeIsHypotec,
+    required TResult Function() submit,
+  }) {
+    return changeIsHypotec(isHypotec);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String nameStr)? changeName,
+    TResult Function(String phoneStr)? changePhone,
+    TResult Function(String requestStr)? changeRequest,
+    TResult Function(String objectId)? changeObjectId,
+    TResult Function(List<String> images)? changeImages,
+    TResult Function(bool isHypotec)? changeIsHypotec,
+    TResult Function()? submit,
+    required TResult orElse(),
+  }) {
+    if (changeIsHypotec != null) {
+      return changeIsHypotec(isHypotec);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangeName value) changeName,
+    required TResult Function(_ChangePhone value) changePhone,
+    required TResult Function(_ChangeRequest value) changeRequest,
+    required TResult Function(_ChangeObjectId value) changeObjectId,
+    required TResult Function(_ChangeImages value) changeImages,
+    required TResult Function(_ChangeIsHypotec value) changeIsHypotec,
+    required TResult Function(_Submit value) submit,
+  }) {
+    return changeIsHypotec(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangeName value)? changeName,
+    TResult Function(_ChangePhone value)? changePhone,
+    TResult Function(_ChangeRequest value)? changeRequest,
+    TResult Function(_ChangeObjectId value)? changeObjectId,
+    TResult Function(_ChangeImages value)? changeImages,
+    TResult Function(_ChangeIsHypotec value)? changeIsHypotec,
+    TResult Function(_Submit value)? submit,
+    required TResult orElse(),
+  }) {
+    if (changeIsHypotec != null) {
+      return changeIsHypotec(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeIsHypotec implements OrderFormEvent {
+  const factory _ChangeIsHypotec({required bool isHypotec}) =
+      _$_ChangeIsHypotec;
+
+  bool get isHypotec => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ChangeIsHypotecCopyWith<_ChangeIsHypotec> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -821,6 +989,7 @@ class _$_Submit implements _Submit {
     required TResult Function(String requestStr) changeRequest,
     required TResult Function(String objectId) changeObjectId,
     required TResult Function(List<String> images) changeImages,
+    required TResult Function(bool isHypotec) changeIsHypotec,
     required TResult Function() submit,
   }) {
     return submit();
@@ -834,6 +1003,7 @@ class _$_Submit implements _Submit {
     TResult Function(String requestStr)? changeRequest,
     TResult Function(String objectId)? changeObjectId,
     TResult Function(List<String> images)? changeImages,
+    TResult Function(bool isHypotec)? changeIsHypotec,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -851,6 +1021,7 @@ class _$_Submit implements _Submit {
     required TResult Function(_ChangeRequest value) changeRequest,
     required TResult Function(_ChangeObjectId value) changeObjectId,
     required TResult Function(_ChangeImages value) changeImages,
+    required TResult Function(_ChangeIsHypotec value) changeIsHypotec,
     required TResult Function(_Submit value) submit,
   }) {
     return submit(this);
@@ -864,6 +1035,7 @@ class _$_Submit implements _Submit {
     TResult Function(_ChangeRequest value)? changeRequest,
     TResult Function(_ChangeObjectId value)? changeObjectId,
     TResult Function(_ChangeImages value)? changeImages,
+    TResult Function(_ChangeIsHypotec value)? changeIsHypotec,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
